@@ -3,6 +3,8 @@
 
 namespace faod
 {
+	const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
+
 	Game::Game() : window_(sf::VideoMode(640, 480), "FAOD Game"), player_(sf::Vector2f(32, 32))
 	{
 		player_.setPosition(100., 100.);
@@ -11,10 +13,20 @@ namespace faod
 
 	void Game::run()
 	{
+		sf::Clock clock;
+		sf::Time timeSinceLastUpdate = sf::Time::Zero;
+
 		while(window_.isOpen())
 		{
 			processEvents();
-			update();
+			timeSinceLastUpdate += clock.restart();
+
+			while(timeSinceLastUpdate > TimePerFrame)
+			{
+				timeSinceLastUpdate -= TimePerFrame;
+				processEvents();
+				update(TimePerFrame);
+			}
 			render();
 		}
 
@@ -33,8 +45,9 @@ namespace faod
 
 	}
 
-	void Game::update()
+	void Game::update(sf::Time delta)
 	{
+		(void) delta;
 
 	}
 

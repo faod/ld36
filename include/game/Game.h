@@ -12,12 +12,15 @@ namespace faod
 			Game();
 			void run();
 
+			static const sf::Time TimePerFrame;
+
 		private:
 			void processEvents();
-			void update();
+			void update(sf::Time delta);
 			void render();
 
 			sf::RenderWindow window_;
 			sf::RectangleShape  player_;
-	};	
+	};
+
 };
