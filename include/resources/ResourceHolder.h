@@ -11,6 +11,13 @@ namespace faod
 	class ResourceHolder
 	{
 		public:
+			ResourceHolder(const ResourceHolder& c) 		   = delete;
+			ResourceHolder(ResourceHolder&& c)      		   = delete;
+			ResourceHolder& operator=(const ResourceHolder& c) = delete;
+			ResourceHolder& operator=(ResourceHolder&& c)      = delete;
+			
+			
+			
 			void load(Ident id, const std::string& filename);
 			
 			template <typename Parameter>
