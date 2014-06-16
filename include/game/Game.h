@@ -10,6 +10,10 @@ namespace faod
 	{
 		public:
 			Game();
+			Game(const Game& g) = delete;
+			Game& operator=(const Game& g) = delete;
+			Game(Game&& g) = delete;
+
 			void run();
 
 			static const sf::Time TimePerFrame;
