@@ -9,6 +9,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 add_executable(${PROJECT_NAME} src/main.cpp)
+include_directories("include")
 
 set(SFML_STATIC_LIBRARIES FALSE CACHE BOOL "Use static SFML libraries")
 
