@@ -19,7 +19,7 @@ endif()
 #find the sfml
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
 
-find_package(SFML 2 COMPONENTS system window graphics)
+find_package(SFML 2.1 COMPONENTS system window graphics)
 
 if(SFML_FOUND)
 	include_directories(${SFML_INCLUDE_DIR})
