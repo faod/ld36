@@ -8,8 +8,12 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 endif()
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+
 include_directories("include")
+
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
+add_executable(${PROJECT_NAME} ${SOURCES})
+
 
 set(SFML_STATIC_LIBRARIES FALSE CACHE BOOL "Use static SFML libraries")
 
