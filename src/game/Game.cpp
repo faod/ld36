@@ -5,10 +5,11 @@ namespace faod
 {
 	const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
-	Game::Game() : window_(sf::VideoMode(640, 480), "FAOD Game"), player_(sf::Vector2f(32, 32))
+	Game::Game() : window_(sf::VideoMode(640, 480), "FAOD Game")
 	{
+        res_.load(1, "dirt.png");
 		player_.setPosition(100., 100.);
-		player_.setFillColor(sf::Color::Blue);
+		player_.setTexture(res_.get(1));
 	}
 
 	void Game::run()
