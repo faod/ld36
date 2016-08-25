@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-#include <resources/ResourceHolder.hpp>
+
 
 namespace faod
 {
@@ -22,6 +22,7 @@ namespace faod
 
             void run();
 
+        private:
             static const sf::Time TimePerFrame;
 
         private:
@@ -29,9 +30,9 @@ namespace faod
             void update(sf::Time delta);
             void render();
 
-            sf::RenderWindow window_;
-            sf::Sprite  player_;
-            ResourceHolder<sf::Texture, int> res_;
+        private:
+
+            sf::RenderWindow    window_;
     };
 
 }
