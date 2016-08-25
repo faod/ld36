@@ -8,8 +8,10 @@ namespace faod
 
     //Whole game state initialization here. Game class will hold the whole world info
 	Game::Game(const std::string& title, unsigned int width, unsigned int height)
-        : window_(sf::VideoMode(width, height), title)
+        :   window_(sf::VideoMode(width, height), title)
+          , stateStack_(State::Context(window_))
 	{
+        registerStates();
 	}
 
     //Game Mainloop
@@ -20,14 +22,19 @@ namespace faod
 
 		while(window_.isOpen())
 		{
-			processEvents();
-			timeSinceLastUpdate += clock.restart();
+            sf::Time delta = clock.restart();
+			timeSinceLastUpdate += delta;
 
 			while(timeSinceLastUpdate > TimePerFrame)
 			{
 				timeSinceLastUpdate -= TimePerFrame;
-				processEvents();
+				processInput();
 				update(TimePerFrame);
+
+                if(stateStack_.isEmpty())
+                {
+                    window_.close();
+                }
 			}
 			render();
 		}
@@ -36,7 +43,7 @@ namespace faod
 
 
     //Main event processing loop
-	void Game::processEvents()
+	void Game::processInput()
 	{
 		sf::Event event;
 
@@ -51,7 +58,7 @@ namespace faod
     //Main logic update loop.
 	void Game::update(sf::Time delta)
 	{
-		(void) delta;
+		stateStack_.update(delta);
 
 	}
 
@@ -59,8 +66,16 @@ namespace faod
 	void Game::render()
 	{
 		window_.clear();
+
+        stateStack_.draw();
+
+        window_.setView(window_.getDefaultView());
+
 		window_.display();
 	}
 
-
+    void Game::registerStates()
+    {
+        //TODO
+    }
 }

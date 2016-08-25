@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-
+#include <states/StateStack.hpp>
 
 namespace faod
 {
@@ -26,13 +26,16 @@ namespace faod
             static const sf::Time TimePerFrame;
 
         private:
-            void processEvents();
+            void processInput();
             void update(sf::Time delta);
             void render();
 
+            void registerStates();
         private:
 
             sf::RenderWindow    window_;
+
+            StateStack          stateStack_;
     };
 
 }
