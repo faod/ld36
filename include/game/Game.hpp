@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-#include <resources/ResourceHolder.h>
+#include <resources/ResourceHolder.hpp>
 
 namespace faod
 {

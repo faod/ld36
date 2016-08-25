@@ -1,4 +1,4 @@
-#include <game/Game.h>
+#include <game/Game.hpp>
 #include <SFML/Window/Event.hpp>
 
 namespace faod

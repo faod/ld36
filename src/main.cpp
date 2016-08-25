@@ -1,4 +1,4 @@
-#include <game/Game.h>
+#include <game/Game.hpp>
 
 #include <iostream>
 #include <exception>
