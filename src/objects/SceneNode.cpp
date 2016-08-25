@@ -77,4 +77,28 @@ namespace faod
         }
     }
 
+    void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        //Apply transform of current node
+        states.transform *= getTransform();
+
+        //Draw node and then children with updated transform
+        drawCurrent(target, states);
+        drawChildren(target, states);
+    }
+
+    void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        (void) target, (void) states;
+        //Default does nothing
+    }
+
+    void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        for(const Smart_ptr& child : children_)
+        {
+            child->draw(target, states);
+        }
+    }
+
 }

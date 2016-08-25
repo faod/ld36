@@ -43,8 +43,14 @@ namespace faod
             sf::Transform   getWorldTransform() const;
             
         private:
+            //Physics update functions
             virtual void    updateCurrent(sf::Time delta);
             void            updateChildren(sf::Time delta);
+
+            //Draw functions
+            virtual void    draw(sf::RenderTarget& target, sf::RenderStates states) const;
+            virtual void    drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+            void            drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
 
 
         private:
