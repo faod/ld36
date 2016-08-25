@@ -10,9 +10,6 @@ namespace faod
 	Game::Game(const std::string& title, unsigned int width, unsigned int height)
         : window_(sf::VideoMode(width, height), title)
 	{
-        res_.load(1, "swampman.png");
-		player_.setPosition(100., 100.);
-		player_.setTexture(res_.get(1));
 	}
 
     //Game Mainloop
@@ -62,7 +59,6 @@ namespace faod
 	void Game::render()
 	{
 		window_.clear();
-		window_.draw(player_);
 		window_.display();
 	}
 
