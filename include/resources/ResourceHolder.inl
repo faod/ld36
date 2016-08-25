@@ -14,9 +14,7 @@ namespace faod
 		if(!resource->loadFromFile(filename))
 			throw std::runtime_error("ResourceHolder::load  - Failed to load " + filename);
 
-		auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
-		
-		assert(inserted.second);
+	    insertResource(id, std::move(resource));
 	}
 
 	template <typename Resource, typename Ident>
@@ -28,9 +26,8 @@ namespace faod
 		if(!resource->loadFromFile(filename, secondParam))
 			throw std::runtime_error("ResourceHolder::load  - Failed to load " + filename);
 
-		auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
 		
-		assert(inserted.second);
+	    insertResource(id, std::move(resource));
 	}
 
 
@@ -51,5 +48,13 @@ namespace faod
 
 		return *found->second;
 	}
+
+    template<typename Resource, typename Ident>
+    void ResourceHolder<Resource, Ident>::insertResource(Ident id, std::unique_ptr<Resource> resource)
+    {
+        //Insert and check for success
+        auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
+        assert(inserted.second);
+    }
 
 };
