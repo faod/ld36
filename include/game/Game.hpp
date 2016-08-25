@@ -34,4 +34,4 @@ namespace faod
             ResourceHolder<sf::Texture, int> res_;
     };
 
-};
+}

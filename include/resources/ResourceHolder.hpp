@@ -50,6 +50,6 @@ namespace faod
             std::map<Ident, std::unique_ptr<Resource>> resources_;
     };
 
-};
+}
 
 #include "ResourceHolder.inl"

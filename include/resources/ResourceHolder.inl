@@ -57,4 +57,4 @@ namespace faod
         assert(inserted.second);
     }
 
-};
+}
