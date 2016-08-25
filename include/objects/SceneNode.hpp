@@ -28,6 +28,7 @@ namespace faod
 
             //default empty node
             SceneNode(); 
+            virtual ~SceneNode() = default;
 
             //attach a child node to the current node
             void        attachChild(Smart_ptr child);
