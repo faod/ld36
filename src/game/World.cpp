@@ -6,14 +6,32 @@ namespace faod
 {
     World::World(sf::RenderWindow& window) : window_(window), view_(window.getDefaultView())
     {
-        (void) window;    
+        loadTextures();
+        buildScene();
     }
 
     void World::update(sf::Time delta)
     {
-        (void) delta;
-        // Gameplay relative update   
+        //update world
+            //TODO
+            //
+        //then scenegraph
+        sceneGraph_.update(delta);
+    }
+    
+    void World::draw()
+    {
+        window_.setView(view_);
+        window_.draw(sceneGraph_);
     }
 
-    
+    void World::loadTextures()
+    {
+        //TODO
+    }
+
+    void World::buildScene()
+    {
+        //TODO
+    }
 }

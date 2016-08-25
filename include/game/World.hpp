@@ -3,6 +3,7 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Time.hpp>
 
+#include <objects/SceneNode.hpp>
 
 //forward declaration
 namespace sf
@@ -36,7 +37,7 @@ namespace faod
             sf::RenderWindow&   window_;
             sf::View            view_;
 
-            
+            SceneNode           sceneGraph_;
         
     };
 }
