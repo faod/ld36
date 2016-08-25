@@ -15,6 +15,12 @@ namespace faod
         //update world
             //TODO
             //
+            //
+        //apply commands
+        while(!commandQueue_.isEmpty())
+        {
+            sceneGraph_.onCommand(commandQueue_.pop(), delta);
+        }
         //then scenegraph
         sceneGraph_.update(delta);
     }
@@ -23,6 +29,11 @@ namespace faod
     {
         window_.setView(view_);
         window_.draw(sceneGraph_);
+    }
+    
+    CommandQueue& World::getCommandQueue()
+    {
+        return commandQueue_;
     }
 
     void World::loadTextures()

@@ -4,6 +4,7 @@
 #include <SFML/System/Time.hpp>
 
 #include <objects/SceneNode.hpp>
+#include <game/CommandQueue.hpp>
 
 //forward declaration
 namespace sf
@@ -29,6 +30,8 @@ namespace faod
             void update(sf::Time delta);
             void draw();
 
+            CommandQueue&   getCommandQueue();
+
         private:
             void loadTextures();
             void buildScene();
@@ -38,6 +41,7 @@ namespace faod
             sf::View            view_;
 
             SceneNode           sceneGraph_;
+            CommandQueue        commandQueue_;
         
     };
 }
