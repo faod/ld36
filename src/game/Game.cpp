@@ -7,7 +7,7 @@ namespace faod
 
 	Game::Game() : window_(sf::VideoMode(640, 480), "FAOD Game")
 	{
-        res_.load(1, "dirt.png");
+        res_.load(1, "swampman.png");
 		player_.setPosition(100., 100.);
 		player_.setTexture(res_.get(1));
 	}
