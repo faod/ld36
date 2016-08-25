@@ -12,7 +12,7 @@ namespace faod
 		std::unique_ptr<Resource> resource(new Resource());
 
 		if(!resource->loadFromFile(filename))
-			throw std::runtime_error("ResourceHolder::load  - Failed to load" + filename);
+			throw std::runtime_error("ResourceHolder::load  - Failed to load " + filename);
 
 		auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
 		
@@ -26,7 +26,7 @@ namespace faod
 		std::unique_ptr<Resource> resource(new Resource());
 
 		if(!resource->loadFromFile(filename, secondParam))
-			throw std::runtime_error("ResourceHolder::load  - Failed to load" + filename);
+			throw std::runtime_error("ResourceHolder::load  - Failed to load " + filename);
 
 		auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
 		
