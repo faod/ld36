@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <states/StateStack.hpp>
+#include <game/PlayerController.hpp>
 
 namespace faod
 {
@@ -36,6 +37,7 @@ namespace faod
             sf::RenderWindow    window_;
 
             StateStack          stateStack_;
+            PlayerController    playerController_;
     };
 
 }

@@ -49,6 +49,7 @@ namespace faod
 
 		while(window_.pollEvent(event))
 		{
+            stateStack_.handleEvent(event);
 			if(event.type == sf::Event::Closed)
 				window_.close();
 		}
