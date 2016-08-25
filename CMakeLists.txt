@@ -8,8 +8,15 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 endif()
 
+#find the sfml
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
 
 include_directories("include")
+
+#find glm
+find_package(GLM REQUIRED)
+include_directories(${GLM_INCLUDE_DIRS})
+
 
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -21,8 +28,6 @@ if(SFML_STATIC_LIBRARIES)
 	add_definitions(-DSFML_STATIC)
 endif()
 
-#find the sfml
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
 
 find_package(SFML 2.4 COMPONENTS system window graphics)
 
