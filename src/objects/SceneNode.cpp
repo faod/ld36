@@ -1,5 +1,6 @@
 #include <objects/SceneNode.hpp>
 
+#include <game/Identifiers.hpp>
 
 #include <algorithm>
 #include <cassert>
@@ -91,6 +92,27 @@ namespace faod
     {
         (void) target, (void) states;
         //Default does nothing
+    }
+    void SceneNode::onCommand(const Command& command, sf::Time delta)
+    {
+        //Command current node if valid category
+        if(command.category_ & getCategory())
+        {
+            command.action_(*this, delta);
+        }
+
+        //Then command children
+        for(Smart_ptr& child : children_)
+        {
+            child->onCommand(command, delta);
+        }
+    }
+
+    unsigned int SceneNode::getCategory() const
+    {
+        //Default return as a Scene Category
+        //Overload in specific nodes for proper category
+        return Category::Scene;
     }
 
     void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const

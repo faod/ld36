@@ -1,5 +1,7 @@
 #pragma once
 
+#include <game/Command.hpp>
+
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/System/Time.hpp>
@@ -42,6 +44,9 @@ namespace faod
             //get position and transform relative to world
             sf::Vector2f    getWorldPosition() const;
             sf::Transform   getWorldTransform() const;
+
+            void                    onCommand(const Command& command, sf::Time delta);
+            virtual unsigned int    getCategory() const;
             
         private:
             //Physics update functions
