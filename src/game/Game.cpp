@@ -3,8 +3,10 @@
 
 namespace faod
 {
-	const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
+    const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
+
+    //Whole game state initialization here. Game class will hold the whole world info
 	Game::Game(const std::string& title, unsigned int width, unsigned int height)
         : window_(sf::VideoMode(width, height), title)
 	{
@@ -13,6 +15,7 @@ namespace faod
 		player_.setTexture(res_.get(1));
 	}
 
+    //Game Mainloop
 	void Game::run()
 	{
 		sf::Clock clock;
@@ -35,6 +38,7 @@ namespace faod
 	}
 
 
+    //Main event processing loop
 	void Game::processEvents()
 	{
 		sf::Event event;
@@ -47,12 +51,14 @@ namespace faod
 
 	}
 
+    //Main logic update loop.
 	void Game::update(sf::Time delta)
 	{
 		(void) delta;
 
 	}
 
+    //Main render loop
 	void Game::render()
 	{
 		window_.clear();
