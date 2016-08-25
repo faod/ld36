@@ -17,4 +17,14 @@ namespace faod
         };
     }
 
+    namespace Category
+    {
+        enum Type
+        {
+            None    =   0,
+            Scene   =   1,
+
+        };
+    }
+
 }
