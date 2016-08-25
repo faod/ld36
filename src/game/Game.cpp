@@ -5,7 +5,8 @@ namespace faod
 {
 	const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
-	Game::Game() : window_(sf::VideoMode(640, 480), "FAOD Game")
+	Game::Game(const std::string& title, unsigned int width, unsigned int height)
+        : window_(sf::VideoMode(width, height), title)
 	{
         res_.load(1, "swampman.png");
 		player_.setPosition(100., 100.);

@@ -13,7 +13,8 @@ namespace faod
     class Game
     {
         public:
-            Game();
+            Game(const std::string& title, unsigned int width, unsigned int height);
+
             Game(const Game& g) = delete;
             Game& operator=(const Game& g) = delete;
             Game& operator=(const Game&& g) = delete;
