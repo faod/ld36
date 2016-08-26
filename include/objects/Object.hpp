@@ -10,6 +10,14 @@ namespace faod
     class Object : public SceneNode
     {
         public:
+           Object(const Object& o) = delete;
+           Object(Object &&o)      = delete;
+           Object& operator=(const Object& o) = delete;
+           Object& operator=(Object&& o)      = delete;
+
+            
+           Object() = default;
+
            void             setVelocity(sf::Vector2f velocity);
            void             setVelocity(float vx, float vy);
            //set acceleration in pixel/s^2
