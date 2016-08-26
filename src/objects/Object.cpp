@@ -39,6 +39,11 @@ namespace faod
         acceleration_.y = ay;
     }
 
+    sf::Vector2f Object::getAcceleration() const
+    {
+        return acceleration_;
+    }
+
     void Object::updateCurrent(sf::Time delta)
     {
         //adding up the effect of acceleration
