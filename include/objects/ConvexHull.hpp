@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 #define m_sign(x) ((x) >= 0 ? 1. : -1.)
-
+#define PI 3.14159
 namespace faod
 {
     //Class Representing a ConvexHull.
@@ -22,7 +22,11 @@ namespace faod
             void translate(glm::vec2 tr);
             void rotate(float orient); //Counter clockwise rotation in rad
 
-            bool intersects(const ConvexHull &other);
+            //returns bounding box for this object (x, y, w, h)
+            glm::vec4 getBoundingBox() const;
+
+            //true whenever this intersects with other
+            bool intersects(const ConvexHull &other) const;
 
         private:
             unsigned int len_;

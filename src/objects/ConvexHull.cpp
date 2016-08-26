@@ -54,8 +54,35 @@ namespace faod
             }
         }
     }
+    
+    glm::vec4 ConvexHull::getBoundingBox() const
+    {
+        if(len_ == 0)
+        {
+            return glm::vec4(0.);
+        }
 
-    bool ConvexHull::intersects(const ConvexHull &other)
+        float min_x, max_x, min_y, max_y;
+        max_x = max_y = FLT_MIN;
+        min_x = min_y = FLT_MAX;
+
+        glm::vec2 v;
+        
+        for(unsigned int i = 0; i < len_; i++)
+        {
+            v = points_[i];
+
+            if(v.x > max_x) max_x = v.x;
+            if(v.x < min_x) min_x = v.x;
+
+            if(v.y > max_y) max_y = v.y;
+            if(v.y < min_y) min_y = v.y;
+        }
+        glm::vec4 res(min_x, min_y, max_x - min_x, max_y - min_y);
+        return res;
+    }
+
+    bool ConvexHull::intersects(const ConvexHull &other) const
     {
         bool isIn;
         float sign;
