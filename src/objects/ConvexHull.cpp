@@ -6,6 +6,25 @@
 
 namespace faod
 {
+    ConvexHull ConvexHull::boxHull(glm::vec2 wh)
+    {
+        ConvexHull c(4);
+        c.points_[0] = glm::vec2(0.);
+        c.points_[1] = glm::vec2(wh.x, 0);
+        c.points_[2] = glm::vec2(wh.x, wh.y);
+        c.points_[3] = glm::vec2(0., wh.y);
+        return c;
+    }
+    ConvexHull ConvexHull::triHull(float w, float h)
+    {
+        ConvexHull c(3);
+        c.points_[0] = glm::vec2(0.);
+        c.points_[1] = glm::vec2(-(w/2.), h);
+        c.points_[2] = glm::vec2( (w/2.), h);
+
+        return c;
+    }   
+
     ConvexHull::ConvexHull(unsigned int len) : len_(len), points_(nullptr)
     {
         if(len_ > 0)
@@ -54,7 +73,7 @@ namespace faod
             }
         }
     }
-    
+
     glm::vec4 ConvexHull::getBoundingBox() const
     {
         if(len_ == 0)
@@ -67,7 +86,7 @@ namespace faod
         min_x = min_y = FLT_MAX;
 
         glm::vec2 v;
-        
+
         for(unsigned int i = 0; i < len_; i++)
         {
             v = points_[i];

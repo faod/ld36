@@ -10,6 +10,12 @@ namespace faod
     class ConvexHull
     {
         public:
+
+            //returns a rectangle ConvexHull with width = wh.x and height = wh.y
+            static ConvexHull boxHull(glm::vec2 wh);
+            //returns an isocele triangle
+            static ConvexHull triHull(float w, float h);
+
             ConvexHull(unsigned int len, glm::vec2 *points);
             ConvexHull(unsigned int len);
 
