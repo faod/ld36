@@ -21,7 +21,7 @@ namespace faod
 
     void Object::accelerate(sf::Vector2f velocity)
     {
-        velocity_ += velocity;
+        acceleration_ += velocity;
     }
 
     void Object::accelerate(float vx, float vy)
@@ -29,8 +29,20 @@ namespace faod
         velocity_.x += vx;
         velocity_.y += vy;
     }
+    void Object::setAcceleration(sf::Vector2f acceleration)
+    {
+        acceleration_ = acceleration;
+    }
+    void Object::setAcceleration(float ax, float ay)
+    {
+        acceleration_.x = ax;
+        acceleration_.y = ay;
+    }
+
     void Object::updateCurrent(sf::Time delta)
     {
+        //adding up the effect of acceleration
+        velocity_ += (acceleration_ * delta.asSeconds());
         //calling sf::transform::move()
         move(velocity_ * delta.asSeconds());
     }
