@@ -6,6 +6,8 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Font.hpp>
 
+#include <resources/StpHolder.hpp>
+
 #include <states/StateStack.hpp>
 #include <game/PlayerController.hpp>
 #include <resources/ResourceHolder.hpp>
@@ -44,6 +46,9 @@ namespace faod
             ResourceHolder<sf::Texture, size_t> textures_;
             //global font manager
             ResourceHolder<sf::Font   , size_t> fonts_;
+
+            //Map manager
+            ResourceHolder<tmx::TileMap, std::string> maps_;
 
             StateStack          stateStack_;
     };
