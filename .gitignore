@@ -1,0 +1,6 @@
+*~
+*.o
+
+# CMAKE build dir
+build/
+

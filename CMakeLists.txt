@@ -1,12 +1,7 @@
 
 cmake_minimum_required(VERSION 2.8)
 
-project(faod)
-
-#enable c++11
-if(CMAKE_COMPILER_IS_GNUCXX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-endif()
+project(faod CXX)
 
 #find the sfml
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
@@ -20,6 +15,8 @@ include_directories(${GLM_INCLUDE_DIRS})
 
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED ON)
 
 
 set(SFML_STATIC_LIBRARIES FALSE CACHE BOOL "Use static SFML libraries")
