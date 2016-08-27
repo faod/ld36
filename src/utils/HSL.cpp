@@ -7,7 +7,7 @@ static float hsl_to_rgb_helper(float x, float a, float b)
     {
         x += 1;
     }
-    if (x > 1) 
+    if (x > 1)
     {
         x -= 1;
     }
@@ -48,12 +48,14 @@ static int hsl_to_rgb(float hue, float saturation, float lightness)
     }
     b = lightness * 2 - a;
 
-    int res = 0xFF << 8;
+    int res = 0;
     res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h + 1.0 / 3.0, a, b)));
     res <<= 8;
     res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h, a, b)));
     res <<= 8;
     res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h - 1.0 / 3.0, a, b)));
+    res <<= 8;
+    res |= 0xFF;
     return res;
 }
 

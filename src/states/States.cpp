@@ -10,7 +10,7 @@ namespace faod
 
     void FooBar::draw() {
         Context context = getContext();
-        context.window_->clear(HSL(current.asMilliseconds()/10, .5, .5).toRGB());
+        context.window_->clear(HSL(current.asMilliseconds()/10, .5, .3).toRGB());
     }
 
     bool FooBar::update(sf::Time delta) {
