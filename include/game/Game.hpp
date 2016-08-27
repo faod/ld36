@@ -4,9 +4,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 #include <states/StateStack.hpp>
 #include <game/PlayerController.hpp>
+#include <resources/ResourceHolder.hpp>
 
 namespace faod
 {
@@ -38,6 +40,11 @@ namespace faod
 
             StateStack          stateStack_;
             PlayerController    playerController_;
+
+            //global textures manager
+            ResourceHolder<sf::Texture, size_t> textures_;
+            //global font manager
+            ResourceHolder<sf::Font   , size_t> fonts_;
     };
 
 }
