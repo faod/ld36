@@ -8,13 +8,13 @@
 
 namespace faod
 {
-    class FooBar: public State
+    class TitleState: public State
     {
         private:
             sf::Time current = sf::Time::Zero;
 
         public:
-            FooBar(StateStack& stack, Context context): State(stack, context) {};
+            TitleState(StateStack& stack, Context context);
 
             virtual void    draw();
             virtual bool    update(sf::Time delta);

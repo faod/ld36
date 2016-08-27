@@ -1,6 +1,6 @@
 #include <game/Game.hpp>
 #include <states/GameState.hpp>
-#include <states/States.hpp>
+#include <states/TitleState.hpp>
 
 #include <SFML/Window/Event.hpp>
 
@@ -88,6 +88,6 @@ namespace faod
     void Game::registerStates()
     {
         stateStack_.registerState<GameState>(States::ID::Game);
-        stateStack_.registerState<FooBar>(States::ID::Title);
+        stateStack_.registerState<TitleState>(States::ID::Title);
     }
 }
