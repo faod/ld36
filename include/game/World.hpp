@@ -3,6 +3,7 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Time.hpp>
 
+#include <STP/TMXLoader.hpp>
 
 #include <objects/SceneNode.hpp>
 #include <game/CommandQueue.hpp>
@@ -48,5 +49,7 @@ namespace faod
             SceneNode           sceneGraph_;
             CommandQueue        commandQueue_;
 
+            //Reference to the current map, already loaded
+            tmx::TileMap *map_;
     };
 }

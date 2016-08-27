@@ -1,4 +1,5 @@
 #include <game/World.hpp>
+#include <objects/Catapult.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -44,6 +45,8 @@ namespace faod
 
     void World::buildScene()
     {
-        //TODO
+        //First thing first, add the catapult
+        Catapult::Smart_ptr ptr(new Catapult());
+        sceneGraph_.attachChild(std::move(ptr));
     }
 }
