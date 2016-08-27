@@ -4,3 +4,5 @@
 # CMAKE build dir
 build/
 
+#vim temp files
+*.swp
