@@ -92,6 +92,7 @@ namespace faod
                 default: assert(false);     
             }
         }
+        pendingList_.clear();
     }
     
     StateStack::PendingChange::PendingChange(Action act, States::ID id) : action(act), stateID(id)
