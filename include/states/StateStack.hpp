@@ -47,7 +47,7 @@ namespace faod
 
             struct PendingChange
             {
-                explicit PendingChange(Action action, States::ID stateID = States::None);
+                explicit PendingChange(Action action, States::ID stateID = States::ID::None);
 
                 Action      action;
                 States::ID  stateID;

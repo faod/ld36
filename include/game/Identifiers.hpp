@@ -6,7 +6,7 @@ namespace faod
     //ID used by the statestack
     namespace States
     {
-        enum ID
+        enum class ID
         {
             None, 
             Title, 
