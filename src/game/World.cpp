@@ -1,6 +1,7 @@
 #include <game/World.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 namespace faod
 {
@@ -24,13 +25,13 @@ namespace faod
         //then scenegraph
         sceneGraph_.update(delta);
     }
-    
+
     void World::draw()
     {
         window_.setView(view_);
         window_.draw(sceneGraph_);
     }
-    
+
     CommandQueue& World::getCommandQueue()
     {
         return commandQueue_;

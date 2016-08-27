@@ -22,8 +22,7 @@ namespace faod
         enum Type
         {
             None    =   0,
-            Scene   =   1,
-
+            Scene   =   1
         };
     }
 

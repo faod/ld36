@@ -3,8 +3,10 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Time.hpp>
 
+
 #include <objects/SceneNode.hpp>
 #include <game/CommandQueue.hpp>
+#include <resources/ResourceHolder.hpp>
 
 //forward declaration
 namespace sf
@@ -25,7 +27,7 @@ namespace faod
         public:
 
             explicit World(sf::RenderWindow& window);
-            
+
             //update and draw functions
             void update(sf::Time delta);
             void draw();
@@ -40,8 +42,11 @@ namespace faod
             sf::RenderWindow&   window_;
             sf::View            view_;
 
+            //World/level specific textures
+            ResourceHolder<sf::Texture, size_t> textures_;
+
             SceneNode           sceneGraph_;
             CommandQueue        commandQueue_;
-        
+
     };
 }
