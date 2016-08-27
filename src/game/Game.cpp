@@ -1,5 +1,6 @@
 #include <game/Game.hpp>
 #include <states/GameState.hpp>
+#include <states/States.hpp>
 
 #include <SFML/Window/Event.hpp>
 
@@ -19,6 +20,7 @@ namespace faod
 
 
         //Need to push 1st state
+        stateStack_.pushState(States::ID::Title);
 	}
 
     //Game Mainloop
@@ -85,6 +87,7 @@ namespace faod
 
     void Game::registerStates()
     {
-        stateStack_.registerState<GameState>(States::Game);
+        stateStack_.registerState<GameState>(States::ID::Game);
+        stateStack_.registerState<FooBar>(States::ID::Title);
     }
 }
