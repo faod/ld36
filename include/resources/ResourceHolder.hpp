@@ -37,6 +37,11 @@ namespace faod
             template <typename Parameter>
             void load(Ident id, const std::string& filename, const Parameter& param);
 
+            /*
+             *  Release a resource
+             */
+            void release(Ident id);
+
             //Returns a reference to a Resource having the Id id
             Resource& 		get(Ident id);
             const Resource& get(Ident id) const;

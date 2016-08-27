@@ -57,4 +57,14 @@ namespace faod
         assert(inserted.second);
     }
 
+    template<typename Resource, typename Ident>
+    void ResourceHolder<Resource, Ident>::release(Ident id)
+    {
+        auto found = resources_.find(id);
+        assert(found != resources_.end());
+
+        resources_.erase(found);
+    }
+
+
 }
