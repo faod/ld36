@@ -93,7 +93,7 @@ namespace faod
 
     void Game::registerStates()
     {
-        stateStack_.registerState<GameState>(States::ID::Game);
-        stateStack_.registerState<TitleState>(States::ID::Title);
+        stateStack_.registerState(States::ID::Game, &makeBasicStateFactory<GameState>);
+        stateStack_.registerState(States::ID::Title, &makeBasicStateFactory<TitleState>);
     }
 }

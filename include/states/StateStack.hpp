@@ -20,8 +20,9 @@ namespace faod
 
 
             //Associates a state ID with a state factory
-            template <typename T>
-            void    registerState(States::ID stateID);
+            //Factory is a Smart_ptr()(StateStack&, Context)
+            template <typename F>
+            void    registerState(States::ID stateID, F factory);
            
             void    update(sf::Time delta);
             void    draw();
@@ -64,13 +65,13 @@ namespace faod
 
     //template method definition
     
-    template<typename T>
-    void StateStack::registerState(States::ID stateID)
+    template<typename F>
+    void StateStack::registerState(States::ID stateID, F factory)
     {
-        /* Register a State havin stateID ID. type T is type of State.
+        /* Register a State havin stateID ID.
          *
          */
-        factories_[stateID] = [this] () { return State::Smart_ptr(new T(*this, context_)); };
+        factories_[stateID] = factory(*this, context_);
     }
 
 }
