@@ -25,7 +25,7 @@ namespace faod
         CommandQueue& commands = world_->getCommandQueue();
         playerController_.handleRealtimeInput(commands);
 
-        return true;
+        return false;
     }
     bool GameState::handleEvent(const sf::Event& event)
     {
@@ -33,6 +33,6 @@ namespace faod
         CommandQueue& commands = world_->getCommandQueue();
         playerController_.handleEvent(event, commands);
 
-        return true;
+        return false;
     }
 }
