@@ -31,11 +31,11 @@ namespace faod
     
             struct Context
             {
-                Context(sf::RenderWindow& window, ResourceHolder<sf::Texture, size_t> &textures, ResourceHolder<sf::Font, size_t> &fonts, PlayerController &player);
+                Context(sf::RenderWindow& window, ResourceHolder<sf::Texture, size_t> &textures, ResourceHolder<sf::Font, std::string> &fonts, PlayerController &player);
 
                 sf::RenderWindow* window_;
                 ResourceHolder<sf::Texture  , size_t>      *textures_;
-                ResourceHolder<sf::Font     , size_t>      *fonts_;
+                ResourceHolder<sf::Font     , std::string>      *fonts_;
                 ResourceHolder<tmx::TileMap , std::string> *maps_;
                 PlayerController                    *playerController_;
             };

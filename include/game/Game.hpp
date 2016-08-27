@@ -35,6 +35,7 @@ namespace faod
             void update(sf::Time delta);
             void render();
 
+            void loadFonts();
             void registerStates();
         private:
 
@@ -45,7 +46,7 @@ namespace faod
             //global textures manager
             ResourceHolder<sf::Texture, size_t> textures_;
             //global font manager
-            ResourceHolder<sf::Font   , size_t> fonts_;
+            ResourceHolder<sf::Font   , std::string> fonts_;
 
             //Map manager
             ResourceHolder<tmx::TileMap, std::string> maps_;

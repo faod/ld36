@@ -4,6 +4,8 @@
 
 #include <SFML/Window/Event.hpp>
 
+#include <exception>
+
 namespace faod
 {
     const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
@@ -16,8 +18,8 @@ namespace faod
             ,fonts_()
             ,stateStack_(State::Context(window_, textures_, fonts_, playerController_))
 	{
+        loadFonts();
         registerStates();
-
 
         //Need to push 1st state
         stateStack_.pushState(States::ID::Title);
@@ -84,6 +86,10 @@ namespace faod
 
 		window_.display();
 	}
+    void Game::loadFonts()
+    {
+        fonts_.load("pixel", "assets/fonts/SFPixelate.ttf");
+    }
 
     void Game::registerStates()
     {
