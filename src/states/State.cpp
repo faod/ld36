@@ -4,7 +4,16 @@
 
 namespace faod
 {
-    State::Context::Context(sf::RenderWindow &window, ResourceHolder<sf::Texture, size_t> &textures, ResourceHolder<sf::Font, std::string> &fonts, PlayerController &player) : window_(&window), textures_(&textures), fonts_(&fonts), playerController_(&player)
+    State::Context::Context(sf::RenderWindow &window
+                            ,ResourceHolder<sf::Texture, size_t> &textures
+                            ,ResourceHolder<sf::Font, std::string> &fonts
+                            ,ResourceHolder<tmx::TileMap, std::string> &maps
+                            ,PlayerController &player)
+        : window_(&window)
+          ,textures_(&textures)
+          ,fonts_(&fonts)
+          ,maps_(&maps)
+          ,playerController_(&player)
     {
     }
 
