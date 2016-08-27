@@ -1,5 +1,7 @@
 #include <states/GameState.hpp>
 #include <game/World.hpp>
+#include <game/CommandQueue.hpp>
+#include <game/PlayerController.hpp>
 
 namespace faod
 {
@@ -9,19 +11,24 @@ namespace faod
 
     void GameState::draw()
     {
-        //TODO
+        world_->draw();
     }
 
     bool GameState::update(sf::Time delta)
     {
-        (void) delta;
-        return false;
-        //TODO
+        world_->update(delta);
+
+        CommandQueue& commands = world_->getCommandQueue();
+        playerController_.handleRealtimeInput(commands);
+
+        return true;
     }
     bool GameState::handleEvent(const sf::Event& event)
     {
-        (void) event;
-        return false;
-        //TODO
+        //Game input handling
+        CommandQueue& commands = world_->getCommandQueue();
+        playerController_.handleEvent(event, commands);
+
+        return true;
     }
 }
