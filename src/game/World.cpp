@@ -7,7 +7,12 @@
 
 namespace faod
 {
-    World::World(sf::RenderWindow& window, GameState &s) : window_(window), view_(window.getDefaultView()), owningstate_(&s)
+    World::World(sf::RenderWindow& window, GameState &state, State::Context context, std::string mapname) 
+        : window_(window)
+          ,view_(window.getDefaultView())
+          ,owningstate_(&state)
+          ,context_(context)
+          ,map_(nullptr)
     {
         loadMap();
         loadTextures();

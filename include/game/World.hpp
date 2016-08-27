@@ -8,6 +8,8 @@
 #include <objects/SceneNode.hpp>
 #include <game/CommandQueue.hpp>
 #include <resources/ResourceHolder.hpp>
+#include <states/State.hpp>
+#include <states/GameState.hpp>
 
 //forward declaration
 namespace sf
@@ -28,7 +30,7 @@ namespace faod
             World(World&& w) = delete;
         public:
 
-            World(sf::RenderWindow& window, GameState& state);
+            World(sf::RenderWindow& window, GameState &state, State::Context context, std::string mapname);
 
             //update and draw functions
             void update(sf::Time delta);
@@ -51,9 +53,11 @@ namespace faod
             SceneNode           sceneGraph_;
             CommandQueue        commandQueue_;
 
-            //Reference to the current map
-            tmx::TileMap *map_;
 
             GameState *owningstate_;
+            State::Context context_;
+
+            //Reference to the current map
+            tmx::TileMap *map_;
     };
 }
