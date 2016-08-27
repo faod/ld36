@@ -6,14 +6,16 @@
 namespace faod
 {
     GameState::GameState(StateStack &stack, Context context)
-        :State(stack, context)
-         ,world_(new World(*context.window_))
-         ,playerController_(*context.playerController_)
-         ,maps_(context.maps_)
+        : GameState(stack, context, "desert")
     {
     }
 
-    GameState::GameState(StateStack &stack, Context context, std::string str) : State(stack , context), world_(new World(*context.window_)), playerController_(*context.playerController_), maps_(context.maps_)
+    GameState::GameState(StateStack &stack, Context context, std::string mapname) 
+        : State(stack , context)
+          , world_(new World(*context.window_, *this))
+          , playerController_(*context.playerController_)
+          , maps_(context.maps_)
+          , currentmap_(mapname)
     {
     }
 

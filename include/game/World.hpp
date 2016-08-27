@@ -17,6 +17,7 @@ namespace sf
 
 namespace faod
 {
+    class GameState;
     class World
     {
         public:
@@ -27,7 +28,7 @@ namespace faod
             World(World&& w) = delete;
         public:
 
-            explicit World(sf::RenderWindow& window);
+            World(sf::RenderWindow& window, GameState& state);
 
             //update and draw functions
             void update(sf::Time delta);
@@ -38,6 +39,7 @@ namespace faod
         private:
             void loadTextures();
             void buildScene();
+            void loadMap();
 
         private:
             sf::RenderWindow&   window_;
@@ -49,7 +51,9 @@ namespace faod
             SceneNode           sceneGraph_;
             CommandQueue        commandQueue_;
 
-            //Reference to the current map, already loaded
+            //Reference to the current map
             tmx::TileMap *map_;
+
+            GameState *owningstate_;
     };
 }

@@ -1,4 +1,5 @@
 #include <game/World.hpp>
+#include <states/GameState.hpp>
 #include <objects/Catapult.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -6,8 +7,9 @@
 
 namespace faod
 {
-    World::World(sf::RenderWindow& window) : window_(window), view_(window.getDefaultView())
+    World::World(sf::RenderWindow& window, GameState &s) : window_(window), view_(window.getDefaultView()), owningstate_(&s)
     {
+        loadMap();
         loadTextures();
         buildScene();
     }
@@ -48,5 +50,9 @@ namespace faod
         //First thing first, add the catapult
         Catapult::Smart_ptr ptr(new Catapult());
         sceneGraph_.attachChild(std::move(ptr));
+    }
+    void World::loadMap()
+    {
+
     }
 }
