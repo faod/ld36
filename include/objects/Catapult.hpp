@@ -18,6 +18,4 @@ namespace faod
             unsigned int ammo_;
             float forcemax_;
     };
-    const float Catapult::forcemin_ = 1.;
-    const float Catapult::initialforcemax_ = 2.;
 }

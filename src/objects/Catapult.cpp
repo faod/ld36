@@ -2,6 +2,9 @@
 
 namespace faod
 {
+    const float Catapult::forcemin_ = 1.;
+    const float Catapult::initialforcemax_ = 2.;
+
     Catapult::Catapult()
         :CollidableObject(ConvexHull(0)) //FIXME
         ,hp_(100)
