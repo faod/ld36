@@ -6,7 +6,6 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Font.hpp>
 
-#include <resources/StpHolder.hpp>
 
 #include <states/StateStack.hpp>
 #include <game/PlayerController.hpp>

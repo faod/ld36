@@ -7,7 +7,7 @@ namespace faod
 {
 
 	template <typename Resource, typename Ident>
-	void ResourceHolder<Resource, Ident>::load(Ident id, const std::string& filename)
+	void ResourceHolderBase<Resource, Ident>::load(Ident id, const std::string& filename)
 	{
 		std::unique_ptr<Resource> resource(new Resource());
 
@@ -19,7 +19,7 @@ namespace faod
 
 	template <typename Resource, typename Ident>
 	template <typename Parameter>
-	void ResourceHolder<Resource, Ident>::load(Ident id, const std::string& filename, const Parameter& secondParam)
+	void ResourceHolderBase<Resource, Ident>::load(Ident id, const std::string& filename, const Parameter& secondParam)
 	{
 		std::unique_ptr<Resource> resource(new Resource());
 
@@ -32,7 +32,7 @@ namespace faod
 
 
 	template <typename Resource, typename Ident>
-	Resource& ResourceHolder<Resource, Ident>::get(Ident id)
+	Resource& ResourceHolderBase<Resource, Ident>::get(Ident id)
 	{
 		auto found = resources_.find(id);
 		assert(found != resources_.end());
@@ -41,7 +41,7 @@ namespace faod
 	}
 
 	template<typename Resource, typename Ident>
-	const Resource& ResourceHolder<Resource, Ident>::get(Ident id) const
+	const Resource& ResourceHolderBase<Resource, Ident>::get(Ident id) const
 	{
 		auto found = resources_.find(id);
 		assert(found != resources_.end());
@@ -50,7 +50,7 @@ namespace faod
 	}
 
     template<typename Resource, typename Ident>
-    void ResourceHolder<Resource, Ident>::insertResource(Ident id, std::unique_ptr<Resource> resource)
+    void ResourceHolderBase<Resource, Ident>::insertResource(Ident id, std::unique_ptr<Resource> resource)
     {
         //Insert and check for success
         auto inserted = resources_.insert(std::make_pair(id, std::move(resource)));
@@ -58,7 +58,7 @@ namespace faod
     }
 
     template<typename Resource, typename Ident>
-    void ResourceHolder<Resource, Ident>::release(Ident id)
+    void ResourceHolderBase<Resource, Ident>::release(Ident id)
     {
         auto found = resources_.find(id);
         assert(found != resources_.end());
