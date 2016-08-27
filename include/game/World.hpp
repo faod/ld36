@@ -58,6 +58,8 @@ namespace faod
             State::Context context_;
 
             //Reference to the current map
+            std::string   mapname_;
             tmx::TileMap *map_;
+            ResourceHolder<tmx::TileMap, std::string> *mapList_;
     };
 }

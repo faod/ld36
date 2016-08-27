@@ -12,7 +12,9 @@ namespace faod
           ,view_(window.getDefaultView())
           ,owningstate_(&state)
           ,context_(context)
+          ,mapname_(mapname)
           ,map_(nullptr)
+          ,mapList_(context.maps_)
     {
         loadMap();
         loadTextures();
@@ -58,6 +60,11 @@ namespace faod
     }
     void World::loadMap()
     {
-
+        //If map is not already in the manager
+        if(!mapList_->isIn(mapname_))
+        {
+            mapList_->load(mapname_, mapname_);
+        }
+        //continue loading map
     }
 }
