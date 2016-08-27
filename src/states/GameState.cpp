@@ -5,7 +5,11 @@
 
 namespace faod
 {
-    GameState::GameState(StateStack &stack, Context context) : State(stack, context) , world_(new World(*context.window_)), playerController_(*context.playerController_)
+    GameState::GameState(StateStack &stack, Context context)
+        :State(stack, context)
+         ,world_(new World(*context.window_))
+         ,playerController_(*context.playerController_)
+         ,maps_(context.maps_)
     {
     }
 

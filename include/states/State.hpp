@@ -9,6 +9,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 
+#include <STP/TMXLoader.hpp>
+
 #include <memory>
 
 //forward decl
@@ -32,8 +34,9 @@ namespace faod
                 Context(sf::RenderWindow& window, ResourceHolder<sf::Texture, size_t> &textures, ResourceHolder<sf::Font, size_t> &fonts, PlayerController &player);
 
                 sf::RenderWindow* window_;
-                ResourceHolder<sf::Texture, size_t> *textures_;
-                ResourceHolder<sf::Font   , size_t> *fonts_;
+                ResourceHolder<sf::Texture  , size_t>      *textures_;
+                ResourceHolder<sf::Font     , size_t>      *fonts_;
+                ResourceHolder<tmx::TileMap , std::string> *maps_;
                 PlayerController                    *playerController_;
             };
 

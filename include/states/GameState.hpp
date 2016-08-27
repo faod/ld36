@@ -17,6 +17,7 @@ namespace faod
         private:
             std::unique_ptr<World>  world_;
             PlayerController&       playerController_;
+            ResourceHolder<tmx::TileMap, std::string> *maps_;
     };
 }    
 
