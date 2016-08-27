@@ -1,22 +1,11 @@
-
 cmake_minimum_required(VERSION 2.8)
 
 project(faod CXX)
 
-#find the sfml
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
-
 include_directories("include")
 
-#find glm
-find_package(GLM REQUIRED)
-include_directories(${GLM_INCLUDE_DIRS})
-
-
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
-add_executable(${PROJECT_NAME} ${SOURCES})
-
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED ON)
+# Find SFML
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
 
 
 set(SFML_STATIC_LIBRARIES FALSE CACHE BOOL "Use static SFML libraries")
@@ -36,12 +25,28 @@ else()
 	message("->Make sure the SFML librairies with the same configuration (Release/Debug, Static/Dynamic) exist. \n")
 endif()
 
-#build static/shared sfml
 
+# Find STP tmx loader
+find_package(STP REQUIRED)
+include_directories(${STP_INCLUDE_DIR})
+
+
+# Find GLM
+find_package(GLM REQUIRED)
+include_directories(${GLM_INCLUDE_DIRS})
+
+
+# Target (our game)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED ON)
+
+
+# static vs shared SFML
 if(SFML_STATIC_LIBRARIES)
 	set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS "SFML_STATIC")
 endif()
 
-#link sfml
-target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES})
-
+#link sfml, STP
+target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${STP_LIBRARY})
