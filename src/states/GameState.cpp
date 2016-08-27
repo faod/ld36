@@ -6,7 +6,7 @@
 namespace faod
 {
     GameState::GameState(StateStack &stack, Context context)
-        : GameState(stack, context, "desert")
+        : GameState(stack, context, "assets/desert.tmx")
     {
     }
 
@@ -14,7 +14,6 @@ namespace faod
         : State(stack , context)
           , world_(new World(*context.window_, *this, context, mapname))
           , playerController_(*context.playerController_)
-          , maps_(context.maps_)
           , currentmap_(mapname)
     {
     }
