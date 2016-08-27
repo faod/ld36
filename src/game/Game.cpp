@@ -12,6 +12,9 @@ namespace faod
           , stateStack_(State::Context(window_))
 	{
         registerStates();
+
+
+        //Need to push 1st state
 	}
 
     //Game Mainloop
@@ -31,6 +34,7 @@ namespace faod
 				processInput();
 				update(TimePerFrame);
 
+                //Check if statestack was cleared in last update
                 if(stateStack_.isEmpty())
                 {
                     window_.close();
