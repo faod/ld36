@@ -1,9 +1,13 @@
 #pragma once
 
 #include <game/Identifiers.hpp>
+#include <resources/ResourceHolder.hpp>
+
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 #include <memory>
 
@@ -16,6 +20,7 @@ namespace sf
 namespace faod
 {
     class StateStack;
+    class PlayerController;
 
     class State
     {
@@ -24,9 +29,12 @@ namespace faod
     
             struct Context
             {
-                Context(sf::RenderWindow& window);
+                Context(sf::RenderWindow& window, ResourceHolder<sf::Texture, size_t> &textures, ResourceHolder<sf::Font, size_t> &fonts, PlayerController &player);
 
                 sf::RenderWindow* window_;
+                ResourceHolder<sf::Texture, size_t> *textures_;
+                ResourceHolder<sf::Font   , size_t> *fonts_;
+                PlayerController                    *playerController_;
             };
 
         public:

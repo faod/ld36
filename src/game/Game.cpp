@@ -9,7 +9,9 @@ namespace faod
     //Whole game state initialization here. Game class will hold the whole world info
 	Game::Game(const std::string& title, unsigned int width, unsigned int height)
         :   window_(sf::VideoMode(width, height), title)
-          , stateStack_(State::Context(window_))
+            ,textures_()
+            ,fonts_()
+            ,stateStack_(State::Context(window_, textures_, fonts_, playerController_))
 	{
         registerStates();
 
