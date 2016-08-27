@@ -9,15 +9,27 @@ namespace faod
 {
     TitleState::TitleState(StateStack& stack, Context context) : State(stack, context)
     {
+        //menu prompt initialisation
+        menuprompt_.setFont(context.fonts_->get("pixel"));
+        menuprompt_.setString("Press [space] to start the game");
+        menuprompt_.setCharacterSize(24);
+
+        //origin at center
+        sf::FloatRect bounds = menuprompt_.getLocalBounds();
+        menuprompt_.setOrigin(bounds.left + bounds.width/2.0f, bounds.top + bounds.height/2.0f);
+        menuprompt_.setPosition(context.window_->getSize().x /2. , context.window_->getSize().y / 2.);
     }
 
     void TitleState::draw() {
         Context context = getContext();
-        context.window_->clear(HSL(current.asMilliseconds()/10, .5, .3).toRGB());
+        context.window_->clear(HSL(current_.asMilliseconds()/10, .5, .3).toRGB());
+
+        //draw menuprompt
+        context.window_->draw(menuprompt_);
     }
 
     bool TitleState::update(sf::Time delta) {
-        current += delta;
+        current_ += delta;
         return false;
     }
 
