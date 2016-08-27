@@ -60,4 +60,10 @@ namespace faod
             StateStack*     stack_;
             Context         context_;
     };
+    template<typename T>
+    std::function<State::Smart_ptr()> makeBasicStateFactory(StateStack& s, State::Context c)
+    {
+        return [&s, c] () { return State::Smart_ptr(new T(s, c)); } ;
+    }
+
 }

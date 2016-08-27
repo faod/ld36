@@ -13,6 +13,10 @@ namespace faod
     {
     }
 
+    GameState::GameState(StateStack &stack, Context context, std::string str) : State(stack , context), world_(new World(*context.window_)), playerController_(*context.playerController_), maps_(context.maps_)
+    {
+    }
+
     void GameState::draw()
     {
         world_->draw();
@@ -35,4 +39,10 @@ namespace faod
 
         return false;
     }
+    std::function<State::Smart_ptr()> GameState::makeGameStateString(StateStack& s, Context c, std::string str)
+    {
+        return [&s, c, str] () { return Smart_ptr(new GameState(s, c, str)); } ;
+    }
+
+
 }
