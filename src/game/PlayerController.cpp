@@ -70,6 +70,17 @@ namespace faod
         }
         return sf::Keyboard::Unknown;
     }
+    PlayerController::Action PlayerController::getAssociatedAction(sf::Keyboard::Key key) const
+    {
+        for(auto pair : keyBinding_)
+        {
+            if(pair.first == key)
+            {
+                return pair.second;
+            }
+        }
+        return Action::Idle;
+    }
 
     void PlayerController::initializeActions()
     {
