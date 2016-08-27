@@ -31,7 +31,7 @@ static int hsl_to_rgb(float hue, float saturation, float lightness)
 {
     float a, b, h;
 
-    hue = (int)hue % 360;
+    hue = static_cast<int>(hue) % 360;
     if (hue < 0)
     {
         hue += 360;
@@ -49,11 +49,11 @@ static int hsl_to_rgb(float hue, float saturation, float lightness)
     b = lightness * 2 - a;
 
     int res = 0xFF << 8;
-    res |= (int)std::floor(0xFF * hsl_to_rgb_helper(h + 1.0 / 3.0, a, b));
+    res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h + 1.0 / 3.0, a, b)));
     res <<= 8;
-    res |= (int)std::floor(0xFF * hsl_to_rgb_helper(h, a, b));
+    res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h, a, b)));
     res <<= 8;
-    res |= (int)std::floor(0xFF * hsl_to_rgb_helper(h - 1.0 / 3.0, a, b));
+    res |= static_cast<int>(std::floor(0xFF * hsl_to_rgb_helper(h - 1.0 / 3.0, a, b)));
     return res;
 }
 
