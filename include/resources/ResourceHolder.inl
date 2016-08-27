@@ -39,7 +39,11 @@ namespace faod
 
 		return *found->second;
 	}
-
+    template<typename Resource, typename Ident>
+    bool ResourceHolderBase<Resource, Ident>::isIn(Ident id) const
+    {
+        return resources_.count(id);
+    }
 	template<typename Resource, typename Ident>
 	const Resource& ResourceHolderBase<Resource, Ident>::get(Ident id) const
 	{

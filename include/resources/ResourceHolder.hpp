@@ -43,7 +43,9 @@ namespace faod
              *  Release a resource
              */
             void release(Ident id);
-
+            
+            //true if there is already a resource present with id
+            bool isIn(Ident id) const;
             //Returns a reference to a Resource having the Id id
             Resource& 		get(Ident id);
             const Resource& get(Ident id) const;

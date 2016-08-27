@@ -16,7 +16,7 @@ namespace faod
         :   window_(sf::VideoMode(width, height), title)
             ,textures_()
             ,fonts_()
-            ,stateStack_(State::Context(window_, textures_, fonts_, playerController_))
+            ,stateStack_(State::Context(window_, textures_, fonts_, maps_, playerController_))
 	{
         loadFonts();
         registerStates();
