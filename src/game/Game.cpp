@@ -1,4 +1,6 @@
 #include <game/Game.hpp>
+#include <states/GameState.hpp>
+
 #include <SFML/Window/Event.hpp>
 
 namespace faod
@@ -83,6 +85,6 @@ namespace faod
 
     void Game::registerStates()
     {
-        //TODO
+        stateStack_.registerState<GameState>(States::Game);
     }
 }
