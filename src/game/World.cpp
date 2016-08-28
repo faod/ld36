@@ -56,7 +56,7 @@ namespace faod
     void World::buildScene()
     {
         //First thing first, add the catapult
-        Catapult::Smart_ptr ptr(new Catapult(context_.textures_->get("catapult")));
+        Catapult::Smart_ptr ptr(new Catapult(context_.textures_->get("catapult"), context_.fonts_));
         sceneGraph_.attachChild(std::move(ptr));
     }
     void World::loadMap()

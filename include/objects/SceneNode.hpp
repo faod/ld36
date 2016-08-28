@@ -58,6 +58,8 @@ namespace faod
             virtual void    drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
             void            drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
 
+            virtual void    drawDebug(sf::RenderTarget& target, sf::RenderStates states) const;
+
 
         private:
             std::vector<Smart_ptr>      children_;

@@ -1,14 +1,16 @@
 #pragma once
 
+#include <resources/ResourceHolder.hpp>
 #include <objects/CollidableObject.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 namespace faod
 {
     class Catapult : public CollidableObject
     {
         public:
-            Catapult(sf::Texture &texture, int startw = 400, int starth = 300);
+            Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts,int startw = 400, int starth = 300);
 
             virtual unsigned int getCategory() const;
 
@@ -18,6 +20,8 @@ namespace faod
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+            virtual void drawDebug(sf::RenderTarget& target,   sf::RenderStates states) const;
+                    void updateMovementBoundaries();
         private:
             struct Sprite
             {
@@ -29,14 +33,16 @@ namespace faod
             static const float forcemin_;
             static const float initialforcemax_;
             static const float initialmaxsteeringangle_;
+            static const float initialmaxvelocity_;
         private:
-
+            ResourceHolder<sf::Font, std::string> *fonts_;
             //Game logic
             unsigned int            hp_;
             unsigned int            ammo_;
             float                   forcemax_;
             //rad, counterclockwise
             float                   maxsteeringangle_;
+            float                   maxvelocity_;
 
             //Graphics
             sf::Texture             &texture_;

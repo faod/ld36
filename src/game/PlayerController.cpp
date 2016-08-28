@@ -56,6 +56,9 @@ namespace faod
         {
             case Action::Idle:
             case Action::LeftSteer:
+            case Action::RightSteer:
+            case Action::Forward:
+            case Action::Backward:
                 return true;
             default:
                 return false;

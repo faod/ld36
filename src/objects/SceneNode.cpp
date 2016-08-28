@@ -84,6 +84,9 @@ namespace faod
 
         //Draw node and then children with updated transform
         drawCurrent(target, states);
+#ifndef NDEBUG
+        drawDebug(target, states);
+#endif
         drawChildren(target, states);
     }
 
@@ -91,6 +94,10 @@ namespace faod
     {
         (void) target, (void) states;
         //Default does nothing
+    }
+    void SceneNode::drawDebug(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        (void) target, (void) states;
     }
     void SceneNode::onCommand(const Command& command, sf::Time delta)
     {

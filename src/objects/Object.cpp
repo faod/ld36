@@ -1,5 +1,7 @@
 #include <objects/Object.hpp>
 
+#include <glm/glm.hpp>
+
 
 namespace faod
 {
@@ -56,7 +58,23 @@ namespace faod
     {
         //adding up the effect of acceleration
         velocity_ += (acceleration_ * delta.asSeconds());
-        //calling sf::transform::move()
-        move(velocity_ * delta.asSeconds());
+               
+        //axis relative to local reference
+        if(getRotation() != 0)
+        {
+            float s, c;
+            c = cos(-degToRad(getRotation()));
+            s = sin(-degToRad(getRotation()));
+            
+            glm::mat2 rotm(c ,s ,-s, c);
+            glm::vec2 dir(velocity_.x, velocity_.y);
+            dir = rotm * dir;
+            dir = delta.asSeconds() * dir;            
+            move(sf::Vector2f(dir.x, dir.y));
+        }
+        else
+        {
+            move(velocity_ * delta.asSeconds());
+        }
     }
 }
