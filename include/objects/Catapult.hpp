@@ -12,6 +12,8 @@ namespace faod
 
             virtual unsigned int getCategory() const;
 
+            //Called to request a movement in the [-100. : 100.] range
+            void moveInput(sf::Vector2f movement, sf::Time delta);
 
         private:
             virtual void updateCurrent(sf::Time delta);
@@ -26,14 +28,15 @@ namespace faod
         private:
             static const float forcemin_;
             static const float initialforcemax_;
-
+            static const float initialmaxsteeringangle_;
         private:
 
             //Game logic
             unsigned int            hp_;
             unsigned int            ammo_;
             float                   forcemax_;
-
+            //rad, counterclockwise
+            float                   maxsteeringangle_;
 
             //Graphics
             sf::Texture             &texture_;

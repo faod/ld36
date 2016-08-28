@@ -25,7 +25,7 @@ namespace faod
             //returns the axis aligned bounding box for this object (x, y, w, h)
             glm::vec4 getBoundingBox() const;
 
-        private:
+        protected:
             virtual void    updateCurrent(sf::Time delta);
 
         private:

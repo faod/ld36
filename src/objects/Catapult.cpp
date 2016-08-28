@@ -3,16 +3,19 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
+
 namespace faod
 {
     const float Catapult::forcemin_ = 1.;
     const float Catapult::initialforcemax_ = 2.;
+    const float Catapult::initialmaxsteeringangle_ = PI/6;
 
     Catapult::Catapult(sf::Texture &texture, int startx, int starty)
         :CollidableObject(ConvexHull(0)) //FIXME
         ,hp_(100)
         ,ammo_(3)
         ,forcemax_(initialforcemax_)
+        ,maxsteeringangle_(initialmaxsteeringangle_)
         ,texture_(texture)
         ,currentframe_(0)
     {
@@ -50,10 +53,17 @@ namespace faod
 
         setPosition(startx, starty);
     }
+    
+    void Catapult::moveInput(sf::Vector2f movement, sf::Time delta)
+    {
+        setVelocity(-20., 0.);
+    }
 
     void Catapult::updateCurrent(sf::Time delta)
     {
-        (void) delta;
+        //Call CollidableObject::update
+        //Collisions will be calculated and then object will be moved (or not if colliding
+        CollidableObject::updateCurrent(delta);
     }
 
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const

@@ -13,6 +13,7 @@ namespace faod
         //
         //Check if movement will produce collision
         //if not call parent::updateCurrent(delta)
+        Object::updateCurrent(delta);
     }
 
     bool CollidableObject::isColliding(const CollidableObject& other) const

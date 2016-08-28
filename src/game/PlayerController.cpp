@@ -2,6 +2,9 @@
 
 #include <game/CommandQueue.hpp>
 
+#include <objects/Catapult.hpp>
+#include <game/Identifiers.hpp>
+
 namespace faod
 {
     PlayerController::PlayerController()
@@ -14,6 +17,9 @@ namespace faod
 
         //initial actions binding
         initializeActions();
+
+        //proper categories
+        actionBinding_[Action::LeftSteer].category_ = Category::Catapult;
     }
 
     void PlayerController::handleEvent(const sf::Event& event, CommandQueue& commands)
@@ -46,6 +52,7 @@ namespace faod
         switch(action)
         {
             case Action::Idle:
+            case Action::LeftSteer:
                 return true;
             default:
                 return false;
@@ -92,6 +99,7 @@ namespace faod
 
     void PlayerController::initializeActions()
     {
-        //TODO
+        actionBinding_[Action::LeftSteer].action_ = derivedAction<Catapult>
+                (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(-100.,0.),std::placeholders::_2));
     }
 }

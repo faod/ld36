@@ -30,7 +30,7 @@ namespace faod
 
            sf::Vector2f     getVelocity() const;
            sf::Vector2f     getAcceleration() const;
-        private:
+        protected:
            virtual void     updateCurrent(sf::Time delta);
 
         private:
