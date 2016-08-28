@@ -1,5 +1,6 @@
 #include <utils/Config.hpp>
 
+#define CEREAL_XML_STRING_VALUE "Config"
 #include <cereal/archives/xml.hpp>
 
 #include <fstream>
