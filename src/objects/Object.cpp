@@ -3,6 +3,14 @@
 
 namespace faod
 {
+    float Object::degToRad(float angle)
+    {
+        return -((angle / 180) * 3.141592654f);
+    }
+    float Object::radToDeg(float omega)
+    {
+        return -((omega / 3.141592654f) * 180);
+    }
     void Object::setVelocity(sf::Vector2f velocity)
     {
         velocity_ = velocity;

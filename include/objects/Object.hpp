@@ -10,6 +10,9 @@ namespace faod
     class Object : public SceneNode
     {
         public:
+            static float degToRad(float angle);
+            static float radToDeg(float omega);
+        public:
            Object(const Object& o) = delete;
            Object(Object &&o)      = delete;
            Object& operator=(const Object& o) = delete;
