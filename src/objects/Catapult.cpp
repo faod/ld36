@@ -1,11 +1,13 @@
 #include <objects/Catapult.hpp>
 
+#include <SFML/Graphics/RenderTarget.hpp>
+
 namespace faod
 {
     const float Catapult::forcemin_ = 1.;
     const float Catapult::initialforcemax_ = 2.;
 
-    Catapult::Catapult(sf::Texture &texture)
+    Catapult::Catapult(sf::Texture &texture, int startx, int starty)
         :CollidableObject(ConvexHull(0)) //FIXME
         ,hp_(100)
         ,ammo_(3)
@@ -45,7 +47,16 @@ namespace faod
         sprites_[7].sprite.setTextureRect(sf::IntRect(448, 0, 64, 64));
         sprites_[7].timetonext = 0.1;
 
+        setPosition(startx, starty);
+    }
+       
+    void Catapult::updateCurrent(sf::Time delta)
+    {
+        (void) delta;
     }
 
-
+    void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        target.draw(sprites_[currentframe_].sprite, states);
+    }
 }

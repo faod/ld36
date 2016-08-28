@@ -8,8 +8,14 @@ namespace faod
     class Catapult : public CollidableObject
     {
         public:
-            Catapult(sf::Texture &texture);
+            Catapult(sf::Texture &texture, int startw = 400, int starth = 300);
 
+
+
+
+        private:
+            virtual void updateCurrent(sf::Time delta);
+            virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
         private:
             struct Sprite
             {
