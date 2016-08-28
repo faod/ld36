@@ -18,6 +18,7 @@ namespace faod
             ,fonts_()
             ,stateStack_(State::Context(window_, textures_, fonts_, maps_, playerController_))
 	{
+        window_.setFramerateLimit(60);
         loadFonts();
         registerStates();
 

@@ -34,6 +34,7 @@ namespace faod
 
     void World::draw()
     {
+        window_.clear(sf::Color(0 , 0 ,0));
         window_.setView(view_);
         view_.setCenter(catapult_->getPosition());
         window_.draw(*map_);
