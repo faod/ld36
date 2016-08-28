@@ -15,7 +15,11 @@ namespace faod
         public:
             enum class Action
             {
-                Idle
+                Idle,
+                Forward,
+                Backward,
+                LeftSteer,
+                RightSteer
             };
         public:
             PlayerController();

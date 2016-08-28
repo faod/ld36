@@ -6,6 +6,14 @@ namespace faod
 {
     PlayerController::PlayerController()
     {
+        //initial key bindings
+        keyBinding_[sf::Keyboard::Left]     = Action::LeftSteer;
+        keyBinding_[sf::Keyboard::Right]    = Action::RightSteer;
+        keyBinding_[sf::Keyboard::Up]       = Action::Forward;
+        keyBinding_[sf::Keyboard::Down]     = Action::Backward;
+
+        //initial actions binding   
+        initializeActions();
     }
 
     void PlayerController::handleEvent(const sf::Event& event, CommandQueue& commands)
