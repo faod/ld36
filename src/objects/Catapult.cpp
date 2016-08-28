@@ -82,22 +82,7 @@ namespace faod
     void Catapult::updateCurrent(sf::Time delta)
     {
         updateMovementBoundaries();        
-        
-        //Update rotation to face velocity vector
-        {
 
-            glm::vec2 currvelocity(getVelocity().x, getVelocity().y);
-            if(0)
-            {
-                currvelocity = glm::normalize(currvelocity);
-                float omega = glm::acos(glm::dot(currvelocity, glm::vec2(0., -1.)));
-            
-                glm::vec3 dummy = glm::cross(glm::vec3(currvelocity, 0.), glm::vec3(0., -1., 0.));
-                omega = dummy.z >= 0 ? omega : -omega;
-                setRotation(radToDeg(omega));
-            }
-
-        }
 
         //Call CollidableObject::update
         //Collisions will be calculated and then object will be moved (or not if colliding
