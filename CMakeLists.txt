@@ -36,6 +36,10 @@ find_package(GLM REQUIRED)
 include_directories(${GLM_INCLUDE_DIRS})
 
 
+# Cereal C++ serializer
+include_directories("3dparty/cereal/include/")
+
+
 # Target (our game)
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*)
 add_executable(${PROJECT_NAME} ${SOURCES})
