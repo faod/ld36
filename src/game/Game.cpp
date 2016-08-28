@@ -82,7 +82,7 @@ namespace faod
 
         stateStack_.draw();
 
-        window_.setView(window_.getDefaultView());
+        //window_.setView(window_.getDefaultView());
 
 		window_.display();
 	}

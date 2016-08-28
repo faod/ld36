@@ -23,11 +23,7 @@ namespace faod
 
     void World::update(sf::Time delta)
     {
-        //update world
-            //TODO
-            //
-            //
-        //apply commands
+        
         while(!commandQueue_.isEmpty())
         {
             sceneGraph_.onCommand(commandQueue_.pop(), delta);
@@ -39,6 +35,7 @@ namespace faod
     void World::draw()
     {
         window_.setView(view_);
+        window_.draw(*map_);
         window_.draw(sceneGraph_);
     }
 
@@ -49,13 +46,17 @@ namespace faod
 
     void World::loadTextures()
     {
-        //TODO
+        //Load catapult spritesheet
+        if(!context_.textures_->isIn("catapult"))
+        {
+            context_.textures_->load("catapult", "assets/sprites/Catapult.png");
+        }
     }
 
     void World::buildScene()
     {
         //First thing first, add the catapult
-        Catapult::Smart_ptr ptr(new Catapult());
+        Catapult::Smart_ptr ptr(new Catapult(context_.textures_->get("catapult")));
         sceneGraph_.attachChild(std::move(ptr));
     }
     void World::loadMap()
@@ -65,6 +66,7 @@ namespace faod
         {
             mapList_->load(mapname_, mapname_);
         }
+        map_ = &mapList_->get(mapname_);
         //continue loading map
     }
 }

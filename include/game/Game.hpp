@@ -43,7 +43,7 @@ namespace faod
             PlayerController    playerController_;
 
             //global textures manager
-            ResourceHolder<sf::Texture, size_t> textures_;
+            ResourceHolder<sf::Texture, std::string> textures_;
             //global font manager
             ResourceHolder<sf::Font   , std::string> fonts_;
 
