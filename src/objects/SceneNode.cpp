@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cassert>
 
-
 namespace faod
 {
     SceneNode::SceneNode() : children_(), parent_(nullptr)
@@ -98,7 +97,7 @@ namespace faod
         //Command current node if valid category
         if(command.category_ & getCategory())
         {
-            command.action_(*this, delta);
+            command.action_(this, delta);
         }
 
         //Then command children
