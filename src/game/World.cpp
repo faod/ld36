@@ -35,6 +35,7 @@ namespace faod
     void World::draw()
     {
         window_.setView(view_);
+        view_.setCenter(catapult_->getPosition());
         window_.draw(*map_);
         window_.draw(sceneGraph_);
     }
@@ -56,7 +57,8 @@ namespace faod
     void World::buildScene()
     {
         //First thing first, add the catapult
-        Catapult::Smart_ptr ptr(new Catapult(context_.textures_->get("catapult"), context_.fonts_));
+        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_);
+        Catapult::Smart_ptr ptr(catapult_);
         sceneGraph_.attachChild(std::move(ptr));
     }
     void World::loadMap()

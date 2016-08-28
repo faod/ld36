@@ -20,6 +20,7 @@ namespace sf
 namespace faod
 {
     class GameState;
+    class Catapult;
     class World
     {
         public:
@@ -52,7 +53,7 @@ namespace faod
 
             SceneNode           sceneGraph_;
             CommandQueue        commandQueue_;
-
+            Catapult            *catapult_;
 
             GameState *owningstate_;
             State::Context context_;
