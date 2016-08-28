@@ -7,7 +7,7 @@
 
 namespace faod
 {
-    World::World(sf::RenderWindow& window, GameState &state, State::Context context, std::string mapname) 
+    World::World(sf::RenderWindow& window, GameState &state, State::Context context, std::string mapname)
         : window_(window)
           ,view_(window.getDefaultView())
           ,owningstate_(&state)
@@ -23,7 +23,7 @@ namespace faod
 
     void World::update(sf::Time delta)
     {
-        
+
         while(!commandQueue_.isEmpty())
         {
             sceneGraph_.onCommand(commandQueue_.pop(), delta);

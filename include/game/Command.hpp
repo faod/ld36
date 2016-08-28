@@ -30,4 +30,4 @@ namespace faod
             fn(static_cast<GameObject&>(node), delta);
         };
     }
-} 
+}

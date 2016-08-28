@@ -23,7 +23,7 @@ namespace faod
             //Factory is a Smart_ptr()(StateStack&, Context)
             template <typename F>
             void    registerState(States::ID stateID, F factory);
-           
+
             void    update(sf::Time delta);
             void    draw();
             void    handleEvent(const sf::Event& event);
@@ -31,12 +31,12 @@ namespace faod
             void    pushState(States::ID stateID);
             void    popState();
             void    clearStates();
-            
+
             bool    isEmpty() const;
 
         private:
             State::Smart_ptr    createState(States::ID stateID);
-            void                applyPendingChanges();         
+            void                applyPendingChanges();
 
         private:
             enum class Action
@@ -55,16 +55,16 @@ namespace faod
             };
         private:
             std::vector<State::Smart_ptr>                               stack_;
-            
+
             State::Context                                              context_;
-            std::map<States::ID, std::function<State::Smart_ptr()>>     factories_; 
+            std::map<States::ID, std::function<State::Smart_ptr()>>     factories_;
 
             std::vector<PendingChange>                                  pendingList_;
     };
 
 
     //template method definition
-    
+
     template<typename F>
     void StateStack::registerState(States::ID stateID, F factory)
     {

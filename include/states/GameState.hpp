@@ -23,5 +23,5 @@ namespace faod
             ResourceHolder<tmx::TileMap, std::string> *maps_;
             std::string             currentmap_;
     };
-}    
+}
 

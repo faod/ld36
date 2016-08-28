@@ -32,7 +32,7 @@ namespace faod
              *  throw std::runtime_error exception if failure to load
              */
             void load(Ident id, const std::string& filename);
-            
+
             /** Same as load(Ident, const std::string&)
              *  except that Resource type is expected to have a method loadFromFile(string, param)
              */
@@ -43,7 +43,7 @@ namespace faod
              *  Release a resource
              */
             void release(Ident id);
-            
+
             //true if there is already a resource present with id
             bool isIn(Ident id) const;
             //Returns a reference to a Resource having the Id id

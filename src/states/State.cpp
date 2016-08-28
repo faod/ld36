@@ -24,7 +24,7 @@ namespace faod
     State::~State()
     {
     }
-    
+
     void State::requestStackPush(States::ID stateID)
     {
         stack_->pushState((stateID));

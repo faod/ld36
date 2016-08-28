@@ -5,11 +5,11 @@ namespace faod
     CollidableObject::CollidableObject(const ConvexHull& convexHull) : Object(), convexHull_(convexHull)
     {
     }
-    
+
     void    CollidableObject::updateCurrent(sf::Time delta)
     {
         (void) delta;
-        //FIXME 
+        //FIXME
         //
         //Check if movement will produce collision
         //if not call parent::updateCurrent(delta)
@@ -21,7 +21,7 @@ namespace faod
         const ConvexHull c2 = other.getConvexHull();
 
         return (c1.intersects(c2) || c2.intersects(c1));
-        
+
     }
 
     ConvexHull CollidableObject::getConvexHull() const

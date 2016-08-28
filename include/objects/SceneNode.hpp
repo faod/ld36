@@ -18,7 +18,7 @@ namespace faod
     {
         public:
             typedef std::unique_ptr<SceneNode> Smart_ptr;
-        
+
         public:
 
 
@@ -29,12 +29,12 @@ namespace faod
             SceneNode(SceneNode&& g) = delete;
 
             //default empty node
-            SceneNode(); 
+            SceneNode();
             virtual ~SceneNode() = default;
 
             //attach a child node to the current node
             void        attachChild(Smart_ptr child);
-            
+
             //detach a child node of the current node, returns the smart_ptr handling the node
             Smart_ptr   detachChild(const SceneNode& node);
 
@@ -47,7 +47,7 @@ namespace faod
 
             void                    onCommand(const Command& command, sf::Time delta);
             virtual unsigned int    getCategory() const;
-            
+
         private:
             //Physics update functions
             virtual void    updateCurrent(sf::Time delta);

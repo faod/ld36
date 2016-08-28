@@ -15,21 +15,21 @@ namespace faod
 
 
             explicit CollidableObject(const ConvexHull &convexHull);
-            
+
             //true if the objects are currently colliding
             bool isColliding(const CollidableObject& other) const;
-    
+
             //returns the convexHull for this object with proper translation rotation and scaling
             ConvexHull getConvexHull() const;
 
             //returns the axis aligned bounding box for this object (x, y, w, h)
             glm::vec4 getBoundingBox() const;
-            
+
         private:
             virtual void    updateCurrent(sf::Time delta);
-        
+
         private:
             ConvexHull convexHull_;
-        
+
     };
 }

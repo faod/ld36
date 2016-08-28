@@ -7,14 +7,14 @@ namespace faod
     StateStack::StateStack(State::Context context) : stack_(), context_(context), factories_(), pendingList_()
     {
     }
-    
+
     void StateStack::pushState(States::ID stateID)
     {
         pendingList_.push_back(PendingChange(Action::Push, stateID));
     }
 
     void StateStack::popState()
-    {   
+    {
         pendingList_.push_back(PendingChange(Action::Pop));
     }
 
@@ -76,7 +76,7 @@ namespace faod
     void StateStack::applyPendingChanges()
     {
         for(PendingChange change : pendingList_)
-        {   
+        {
             switch(change.action)
             {
                 case Action::Push:
@@ -89,12 +89,12 @@ namespace faod
                     stack_.clear();
                     break;
 
-                default: assert(false);     
+                default: assert(false);
             }
         }
         pendingList_.clear();
     }
-    
+
     StateStack::PendingChange::PendingChange(Action act, States::ID id) : action(act), stateID(id)
     {
     }

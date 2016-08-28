@@ -9,7 +9,7 @@
 namespace faod
 {
     SceneNode::SceneNode() : children_(), parent_(nullptr)
-    {        
+    {
     }
 
     void SceneNode::attachChild(Smart_ptr child)
@@ -21,7 +21,7 @@ namespace faod
     SceneNode::Smart_ptr SceneNode::detachChild(const SceneNode& node)
     {
         //look in the collection of children for the node matching the parameter
-        auto found = std::find_if(children_.begin(), children_.end(), 
+        auto found = std::find_if(children_.begin(), children_.end(),
                 [&] (Smart_ptr& p) { return p.get() == &node; });
         //Node expected to be child of this
         assert(found != children_.end());
@@ -44,7 +44,7 @@ namespace faod
     }
 
     sf::Vector2f SceneNode::getWorldPosition() const
-    {   
+    {
         return getWorldTransform() * sf::Vector2f();
     }
 
@@ -54,7 +54,7 @@ namespace faod
 
         for(const SceneNode* node = this; node != nullptr; node = node->parent_)
         {
-            transform = node->getTransform() * transform;   
+            transform = node->getTransform() * transform;
         }
 
         return transform;
@@ -63,7 +63,7 @@ namespace faod
     /*
      * Private functions
      */
-    
+
     void SceneNode::updateCurrent(sf::Time delta)
     {
         //default implementation is void

@@ -15,7 +15,7 @@ namespace faod
            Object& operator=(const Object& o) = delete;
            Object& operator=(Object&& o)      = delete;
 
-            
+
            Object() = default;
 
            void             setVelocity(sf::Vector2f velocity);
@@ -27,7 +27,7 @@ namespace faod
            //instantaneous acceleration
            void             accelerate(sf::Vector2f velocity);
            void             accelerate(float vx, float vy);
-           
+
            sf::Vector2f     getVelocity() const;
            sf::Vector2f     getAcceleration() const;
         private:

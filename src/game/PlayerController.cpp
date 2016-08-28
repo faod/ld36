@@ -12,12 +12,12 @@ namespace faod
         keyBinding_[sf::Keyboard::Up]       = Action::Forward;
         keyBinding_[sf::Keyboard::Down]     = Action::Backward;
 
-        //initial actions binding   
+        //initial actions binding
         initializeActions();
     }
 
     void PlayerController::handleEvent(const sf::Event& event, CommandQueue& commands)
-    {   
+    {
         if(event.type == sf::Event::KeyPressed)
         {
             //Check if pressed key appears in registered keys, trigger command if so
@@ -40,7 +40,7 @@ namespace faod
             }
         }
     }
-    
+
     bool PlayerController::isRealtimeAction(Action action)
     {
         switch(action)
@@ -66,7 +66,7 @@ namespace faod
         //Insert new binding
         keyBinding_[key] = action;
     }
-    
+
     sf::Keyboard::Key PlayerController::getAssignedKey(Action action) const
     {
         for(auto pair : keyBinding_)

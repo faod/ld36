@@ -24,11 +24,11 @@ namespace faod
             };
 
         private:
-            static const float forcemin_; 
+            static const float forcemin_;
             static const float initialforcemax_;
 
         private:
-            
+
             //Game logic
             unsigned int            hp_;
             unsigned int            ammo_;

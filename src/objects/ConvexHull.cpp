@@ -23,7 +23,7 @@ namespace faod
         c.points_[2] = glm::vec2( (w/2.), h);
 
         return c;
-    }   
+    }
 
     ConvexHull::ConvexHull(unsigned int len) : len_(len), points_(nullptr)
     {
@@ -32,7 +32,7 @@ namespace faod
             points_ = new glm::vec2[len];
         }
     }
-    ConvexHull::ConvexHull(unsigned int len, glm::vec2 *points) : ConvexHull(len) 
+    ConvexHull::ConvexHull(unsigned int len, glm::vec2 *points) : ConvexHull(len)
     {
         if(len_)
         {

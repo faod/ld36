@@ -28,7 +28,7 @@ namespace faod
     {
         public:
             typedef std::unique_ptr<State> Smart_ptr;
-    
+
             struct Context
             {
                 Context(sf::RenderWindow& window
@@ -53,7 +53,7 @@ namespace faod
             virtual bool    handleEvent(const sf::Event& event) = 0;
 
         protected:
-            //3 methods below are called when requesting stacking/popping of a state. 
+            //3 methods below are called when requesting stacking/popping of a state.
             void    requestStackPush(States::ID stateID);
             void    requestStackPop();
             void    requestStateClear();

@@ -8,8 +8,8 @@ namespace faod
     {
         enum class ID
         {
-            None, 
-            Title, 
+            None,
+            Title,
             Menu,
             Game,
             Loading,

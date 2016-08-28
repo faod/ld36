@@ -10,7 +10,7 @@ namespace faod
     {
     }
 
-    GameState::GameState(StateStack &stack, Context context, std::string mapname) 
+    GameState::GameState(StateStack &stack, Context context, std::string mapname)
         : State(stack , context)
           , world_(new World(*context.window_, *this, context, mapname))
           , playerController_(*context.playerController_)

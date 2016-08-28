@@ -50,7 +50,7 @@ namespace faod
 
         setPosition(startx, starty);
     }
-       
+
     void Catapult::updateCurrent(sf::Time delta)
     {
         (void) delta;
