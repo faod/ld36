@@ -21,8 +21,9 @@ namespace faod
     {
         enum Type
         {
-            None    =   0,
-            Scene   =   1
+            None        =   0,
+            Scene       =   1,
+            Catapult    =   1 << 1,
         };
     }
 

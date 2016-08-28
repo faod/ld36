@@ -1,4 +1,5 @@
 #include <objects/Catapult.hpp>
+#include <game/Identifiers.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
@@ -58,5 +59,10 @@ namespace faod
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(sprites_[currentframe_].sprite, states);
+    }
+
+    unsigned int Catapult::getCategory() const
+    {
+        return Category::Catapult;
     }
 }

@@ -10,7 +10,7 @@ namespace faod
         public:
             Catapult(sf::Texture &texture, int startw = 400, int starth = 300);
 
-
+            virtual unsigned int getCategory() const;
 
 
         private:
