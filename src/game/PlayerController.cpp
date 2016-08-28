@@ -19,7 +19,10 @@ namespace faod
         initializeActions();
 
         //proper categories
-        actionBinding_[Action::LeftSteer].category_ = Category::Catapult;
+        for(auto &bind : actionBinding_)
+        {
+            bind.second.category_ = Category::Catapult;
+        }
     }
 
     void PlayerController::handleEvent(const sf::Event& event, CommandQueue& commands)
@@ -101,5 +104,11 @@ namespace faod
     {
         actionBinding_[Action::LeftSteer].action_ = derivedAction<Catapult>
                 (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(-100.,0.),std::placeholders::_2));
+        actionBinding_[Action::RightSteer].action_ = derivedAction<Catapult>
+                (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(100.,0.),std::placeholders::_2));
+        actionBinding_[Action::Forward].action_ = derivedAction<Catapult>
+                (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(0.,-100.),std::placeholders::_2));
+        actionBinding_[Action::Backward].action_ = derivedAction<Catapult>
+                (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(0.,100.),std::placeholders::_2));
     }
 }
