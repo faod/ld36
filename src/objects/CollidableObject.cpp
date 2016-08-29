@@ -42,4 +42,8 @@ namespace faod
     {
         return getConvexHull().getBoundingBox();
     }
+    Collision::Type CollidableObject::getCollisionType() const
+    {
+        return Collision::Type::None;    
+    }
 }

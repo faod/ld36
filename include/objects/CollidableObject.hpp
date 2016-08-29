@@ -3,6 +3,8 @@
 #include <objects/Object.hpp>
 #include <objects/ConvexHull.hpp>
 
+#include <game/Identifiers.hpp>
+
 namespace faod
 {
     class CollidableObject : public Object
@@ -24,7 +26,8 @@ namespace faod
 
             //returns the axis aligned bounding box for this object (x, y, w, h)
             glm::vec4 getBoundingBox() const;
-
+            
+            virtual Collision::Type getCollisionType() const;
         protected:
             virtual void    updateCurrent(sf::Time delta);
             virtual void    drawDebug(sf::RenderTarget &target, sf::RenderStates states) const;
