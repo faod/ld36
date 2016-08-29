@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utils/Animation.hpp>
+#include <game/World.hpp>
 #include <objects/CollidableObject.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Clock.hpp>
@@ -10,8 +11,9 @@ namespace faod
     class CollisionManager;
     class Foe: public CollidableObject
     {
+
         public:
-            Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, float orient, CollisionManager *manager);
+            Foe(World *world, sf::Texture &texture, int row, int spawn_x, int spawn_y, float orient, CollisionManager *manager);
 
             ConvexHull getFOV() const;
             void collideWith(CollidableObject &other);
@@ -31,7 +33,11 @@ namespace faod
             Animation               swordAnimation2_;
 
             //Game logic
-            unsigned int hp_;
+            World                   *world_; // to getCatapult()
+            unsigned int            hp_;
+            bool                    performing_; // Action doing
+            bool                    blocking_;   // Cannot be stopped if true
+            Animation               *perform_;   // What action
 
             static ConvexHull fov;
     };

@@ -58,7 +58,7 @@ namespace faod
 
         rect.setPosition(sf::Vector2f(catapult_->getPosition().x - 50., catapult_->getPosition().y + 270.));
         power.setPosition(sf::Vector2f(catapult_->getPosition().x - 50., catapult_->getPosition().y + 270.));
-        
+
         window_.draw(rect);
         window_.draw(power);
     }
@@ -144,7 +144,7 @@ namespace faod
                 }
                 else
                 {
-                    Foe *foe = new Foe(context_.textures_->get("foe"), 3, x, y, it->rotation_, &manager_);
+                    Foe *foe = new Foe(this, context_.textures_->get("foe"), 3, x, y, it->rotation_, &manager_);
                     Foe::Smart_ptr ptr(foe);
                     sceneGraph_.attachChild(ptr);
                     manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));
@@ -163,5 +163,10 @@ namespace faod
         map_ = &mapList_->get(mapname_);
         map_->ShowObjects();
         //continue loading map
+    }
+
+    Catapult* World::getCatapult()
+    {
+        return catapult_;
     }
 }

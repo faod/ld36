@@ -38,6 +38,7 @@ namespace faod
             //update and draw functions
             void update(sf::Time delta);
             void draw();
+            Catapult* getCatapult();
 
             CommandQueue&   getCommandQueue();
 

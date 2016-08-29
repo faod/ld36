@@ -1,19 +1,26 @@
 #include <objects/Foe.hpp>
+#include <objects/Catapult.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
+
+#include <glm/glm.hpp>
 
 namespace faod
 {
     ConvexHull Foe::fov = ConvexHull::triHull(4*32., 5*32., PI);
 
-    Foe::Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, float orient, CollisionManager *manager):
+    Foe::Foe(World *world, sf::Texture &texture, int row, int spawn_x, int spawn_y, float orient, CollisionManager *manager):
         CollidableObject(ConvexHull::boxHull(glm::vec2(32., 24.)), manager),
         texture_(texture),
         walkAnimation_(true),
         shieldAnimation_(false),
         swordAnimation1_(false),
         swordAnimation2_(false),
-        hp_(100)
+        world_(world),
+        hp_(100),
+        performing_(false),
+        blocking_(false),
+        perform_(nullptr)
     {
         sf::Sprite sprite;
         sprite.setTexture(texture_);
@@ -56,7 +63,57 @@ namespace faod
 
     void Foe::updateCurrent(sf::Time delta)
     {
-        (void) delta;
+        if (performing_ && perform_)
+        {
+            perform_->update(delta.asMilliseconds());
+            current_ = perform_->getCurrentSprite();
+            if (!current_)
+            {
+                current_    = walkAnimation_.getFrame(0);
+                performing_ = false;
+                blocking_   = false;
+            }
+        }
+        if (!blocking_)
+        {
+            Catapult *cata = world_->getCatapult();
+            ConvexHull cataBB = cata->getConvexHull();
+            if (getFOV().intersects(cataBB) || cataBB.intersects(getFOV()))
+            {
+                glm::vec2 pos = glm::vec2(getPosition().x, getPosition().y);
+                glm::vec2 dta = glm::vec2(cata->getPosition().x, cata->getPosition().y) - pos;
+                glm::vec2 dir = glm::normalize(dta);
+
+                if (glm::length(dta) < 48)
+                {
+                    // ATTACK
+                    performing_ = true;
+                    blocking_   = true;
+                    perform_    = &swordAnimation2_;
+                    swordAnimation2_.reset();
+                }
+                else
+                {
+                    // CHASE
+                    pos += .35f * dir;
+                    setPosition(pos.x, pos.y);
+
+                    float orient = glm::acos(glm::dot(glm::vec2(0., 1.), dir)) * 180/PI;
+                    orient *= -m_sign(dir.x);
+                    setRotation(180+orient);
+
+                    performing_ = true;
+                    perform_    = &walkAnimation_;
+                    walkAnimation_.reset();
+                }
+            }
+            else
+            {
+                current_    = walkAnimation_.getFrame(0);
+                performing_ = false;
+                blocking_   = false;
+            }
+        }
     }
 
     void Foe::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -71,6 +128,7 @@ namespace faod
     }
     void Foe::collideWith(CollidableObject &other)
     {
+        (void) other;
     }
     Collision::Type Foe::getCollisionType() const
     {
