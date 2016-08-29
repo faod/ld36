@@ -81,6 +81,18 @@ namespace faod
             rotate(1);
         }
     }
+    float Catapult::getForceMin() const
+    {
+        return forcemin_;
+    }
+    float Catapult::getForceMax() const
+    {
+        return forcemax_;
+    }
+    float Catapult::getCurrentForce() const
+    {
+        return currentForce_;
+    }
 
     void Catapult::updateCurrent(sf::Time delta)
     {
@@ -145,6 +157,7 @@ namespace faod
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(sprites_[currentframe_].sprite, states);
+
     }
     void Catapult::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
     {
@@ -158,6 +171,7 @@ namespace faod
         speed.setString(oss.str());
         oss.clear();
         oss.str(std::string(""));
+
         target.draw(speed);
     }
     unsigned int Catapult::getCategory() const

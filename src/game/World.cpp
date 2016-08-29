@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 namespace faod
 {
@@ -39,6 +40,24 @@ namespace faod
         view_.setCenter(catapult_->getPosition());
         window_.draw(*map_);
         window_.draw(sceneGraph_);
+
+        //draw catapult power bar
+        //frame rectangle
+        sf::RectangleShape rect(sf::Vector2f(100., 20.));
+        rect.setOutlineColor(sf::Color(255, 0, 0));
+        rect.setOutlineThickness(3.);
+        rect.setFillColor(sf::Color::Transparent);
+
+        //power bar
+        float size = ((catapult_->getCurrentForce() - catapult_->getForceMin()) / (catapult_->getForceMax() - catapult_->getForceMin())) * 100.;
+        sf::RectangleShape power(sf::Vector2f(size, 20.));
+        power.setFillColor(sf::Color::Yellow);
+
+        rect.setPosition(sf::Vector2f(catapult_->getPosition().x - 50., catapult_->getPosition().y + 270.));
+        power.setPosition(sf::Vector2f(catapult_->getPosition().x - 50., catapult_->getPosition().y + 270.));
+        
+        window_.draw(rect);
+        window_.draw(power);
     }
 
     CommandQueue& World::getCommandQueue()

@@ -18,6 +18,11 @@ namespace faod
             void moveInput(sf::Vector2f movement, sf::Time delta);
             //Called to request a throw
             void throwProjectile(sf::Time delta);
+
+            float getForceMin() const;
+            float getForceMax() const;
+            float getCurrentForce() const;
+
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
