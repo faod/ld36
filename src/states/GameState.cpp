@@ -6,7 +6,7 @@
 namespace faod
 {
     GameState::GameState(StateStack &stack, Context context)
-        : GameState(stack, context, "assets/desert.tmx")
+        : GameState(stack, context, "assets/level0.tmx")
     {
     }
 
