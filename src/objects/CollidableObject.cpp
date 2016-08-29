@@ -16,6 +16,11 @@ namespace faod
         Object::updateCurrent(delta);
     }
 
+    void CollidableObject::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        getConvexHull().draw(target, states);
+    }
+
     bool CollidableObject::isColliding(const CollidableObject& other) const
     {
         const ConvexHull c1 = getConvexHull();
@@ -28,8 +33,8 @@ namespace faod
     ConvexHull CollidableObject::getConvexHull() const
     {
         ConvexHull c = convexHull_;
+        c.rotate(((getRotation() / 360) * 2 * PI));
         c.translate(glm::vec2(getPosition().x, getPosition().y));
-        c.rotate(-((getRotation() / 360) * 2 * PI));
         return c;
     }
 

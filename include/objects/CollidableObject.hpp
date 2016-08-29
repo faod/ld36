@@ -27,7 +27,7 @@ namespace faod
 
         protected:
             virtual void    updateCurrent(sf::Time delta);
-
+            virtual void    drawDebug(sf::RenderTarget &target, sf::RenderStates states) const;
         private:
             ConvexHull convexHull_;
 
