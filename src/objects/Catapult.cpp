@@ -207,4 +207,8 @@ namespace faod
     {
         return Category::Catapult;
     }
+    Collision::Type Catapult::getCollisionType() const
+    {
+        return Collision::Type::Catapult;
+    }
 }
