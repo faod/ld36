@@ -5,7 +5,7 @@
 namespace faod
 {
     Projectile::Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty)
-        :CollidableObject(ConvexHull(0)) //FIXME
+        :CollidableObject(ConvexHull::boxHull(glm::vec2(16., 16.)))
         ,weight_(weight)
         ,texture_(texture)
     {
