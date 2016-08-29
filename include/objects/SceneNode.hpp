@@ -47,6 +47,8 @@ namespace faod
 
             void                    onCommand(const Command& command, sf::Time delta);
             virtual unsigned int    getCategory() const;
+            
+            SceneNode*                  parent_;
 
         private:
             //Physics update functions
@@ -63,6 +65,5 @@ namespace faod
 
         private:
             std::vector<Smart_ptr>      children_;
-            SceneNode*                  parent_;
     };
 }
