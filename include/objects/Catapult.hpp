@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utils/Animation.hpp>
 #include <resources/ResourceHolder.hpp>
 #include <objects/CollidableObject.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -30,12 +31,6 @@ namespace faod
             virtual void drawDebug(sf::RenderTarget& target,   sf::RenderStates states) const;
                     void updateMovementBoundaries();
                     void updateThrow(sf::Time delta);
-        private:
-            struct Sprite
-            {
-                sf::Sprite sprite;
-                float      timetonext;
-            };
 
         private:
             static const float forcemin_;
@@ -54,12 +49,10 @@ namespace faod
 
             //Graphics
             sf::Texture             &texture_;
-            std::array<Sprite, 8>   sprites_;
-            size_t                  currentframe_;
-            //elapsed time since animation begin
-            sf::Clock                elapsedTime_;
+            sf::Sprite              *current_;
 
             //Throwing projectile related vars
+            Animation               animation_;
             bool                    throwing_;
             bool                    throwPressed_;
             float                   currentForce_;

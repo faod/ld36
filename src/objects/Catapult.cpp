@@ -22,51 +22,58 @@ namespace faod
         ,forcemax_(initialforcemax_)
         ,maxvelocity_(initialmaxvelocity_)
         ,texture_(texture)
-        ,currentframe_(0)
+        ,animation_(false)
         ,throwing_(false)
         ,throwPressed_(false)
         ,currentForce_(forcemin_)
     {
-        sprites_[0].sprite.setTexture(texture_);
-        sprites_[0].sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
-        sprites_[0].timetonext = 0.1;
+        sf::Sprite sprite;
+        sprite.setTexture(texture_);
 
-        sprites_[1].sprite.setTexture(texture_);
-        sprites_[1].sprite.setTextureRect(sf::IntRect(64, 0, 64, 64));
-        sprites_[1].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[2].sprite.setTexture(texture_);
-        sprites_[2].sprite.setTextureRect(sf::IntRect(128, 0, 64, 64));
-        sprites_[2].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(64, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[3].sprite.setTexture(texture_);
-        sprites_[3].sprite.setTextureRect(sf::IntRect(192, 0, 64, 64));
-        sprites_[3].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(128, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[4].sprite.setTexture(texture_);
-        sprites_[4].sprite.setTextureRect(sf::IntRect(256, 0, 64, 64));
-        sprites_[4].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(192, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[5].sprite.setTexture(texture_);
-        sprites_[5].sprite.setTextureRect(sf::IntRect(320, 0, 64, 64));
-        sprites_[5].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(256, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[6].sprite.setTexture(texture_);
-        sprites_[6].sprite.setTextureRect(sf::IntRect(384, 0, 64, 64));
-        sprites_[6].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(320, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
 
-        sprites_[7].sprite.setTexture(texture_);
-        sprites_[7].sprite.setTextureRect(sf::IntRect(448, 0, 64, 64));
-        sprites_[7].timetonext = 0.1;
+        sprite.setTextureRect(sf::IntRect(384, 0, 64, 64));
+        animation_.addFrame(sprite, 60);
+
+        sprite.setTextureRect(sf::IntRect(448, 0, 64, 64));
+        animation_.addFrame(sprite, 400);
+
+        // Reverse animation
+        animation_.addFrame(*(animation_.getFrame(6)), 200);
+        animation_.addFrame(*(animation_.getFrame(5)), 200);
+        animation_.addFrame(*(animation_.getFrame(4)), 200);
+        animation_.addFrame(*(animation_.getFrame(3)), 200);
+        animation_.addFrame(*(animation_.getFrame(2)), 200);
+        animation_.addFrame(*(animation_.getFrame(1)), 200);
+        animation_.addFrame(*(animation_.getFrame(0)), 200);
+
+        current_ = animation_.getFrame(0);
 
         setOrigin(33, 32);
         setPosition(startx, starty);
     }
     void Catapult::moveInput(sf::Vector2f movement, sf::Time delta)
     {
+        (void) delta;
         if(movement.y < 0.)
         {
-            setAcceleration(0. , -10.);     
+            setAcceleration(0. , -10.);
         }
         if(movement.y > 0.)
         {
@@ -74,7 +81,7 @@ namespace faod
         }
         if(movement.x < 0.)
         {
-            rotate(-1); 
+            rotate(-1);
         }
         if(movement.x > 0.)
         {
@@ -96,7 +103,7 @@ namespace faod
 
     void Catapult::updateCurrent(sf::Time delta)
     {
-        updateMovementBoundaries();        
+        updateMovementBoundaries();
 
 
         //Call CollidableObject::update
@@ -118,35 +125,18 @@ namespace faod
                 //if the current force is different of forcemin_
                 //we are throwing
                 throwing_ = true;
-                elapsedTime_.restart();
+                currentForce_ = forcemin_;
+                animation_.reset();
             }
         }
         if(throwing_)
         {
-            //we can animate the catapult
-            if(elapsedTime_.getElapsedTime().asSeconds() > sprites_[currentframe_].timetonext)
+            animation_.update(delta.asMilliseconds());
+            current_ = animation_.getCurrentSprite();
+            if(!current_)
             {
-                if(currentframe_ < 7 && currentForce_ > forcemin_)
-                {
-                    currentframe_++;
-                    elapsedTime_.restart();
-                }
-                if(currentframe_ == 7)
-                {
-                    currentframe_--;
-                    currentForce_ = forcemin_;
-                    elapsedTime_.restart();
-                    //throw projectile
-                }
-                if(currentframe_ > 0 && currentForce_ <= forcemin_)
-                {
-                    currentframe_--;
-                    elapsedTime_.restart();
-                }
-                if(currentframe_ == 0 && currentForce_ <= forcemin_)
-                {
-                    throwing_ = false;               
-                }
+                current_ = animation_.getFrame(0);
+                throwing_ = false;
             }
         }
         //we reset throwPressed
@@ -189,14 +179,14 @@ namespace faod
 
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const
     {
-        target.draw(sprites_[currentframe_].sprite, states);
+        target.draw(*current_, states);
 
     }
     void Catapult::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
     {
         CollidableObject::drawDebug(target, states);
         static sf::Text speed("speed", fonts_->get("pixel"), 12);
-        
+
         speed.setFillColor(sf::Color(0,0,255));
 
 
