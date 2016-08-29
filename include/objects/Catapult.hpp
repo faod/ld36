@@ -4,6 +4,7 @@
 #include <objects/CollidableObject.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/System/Clock.hpp>
 
 namespace faod
 {
@@ -28,6 +29,7 @@ namespace faod
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
             virtual void drawDebug(sf::RenderTarget& target,   sf::RenderStates states) const;
                     void updateMovementBoundaries();
+                    void updateThrow(sf::Time delta);
         private:
             struct Sprite
             {
@@ -54,7 +56,8 @@ namespace faod
             sf::Texture             &texture_;
             std::array<Sprite, 8>   sprites_;
             size_t                  currentframe_;
-
+            //elapsed time since animation begin
+            sf::Clock                elapsedTime_;
 
             //Throwing projectile related vars
             bool                    throwing_;

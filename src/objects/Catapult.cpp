@@ -103,24 +103,56 @@ namespace faod
         //Collisions will be calculated and then object will be moved (or not if colliding
         CollidableObject::updateCurrent(delta);
 
+        updateThrow(delta);
 
-/*
-        //Cancel movement
-        glm::vec2 currvelocity = glm::vec2(getVelocity().x, getVelocity().y);
-        glm::vec2 curraccel = glm::vec2(getAcceleration().x, getAcceleration().y) ;
-        if(glm::length(currvelocity) > 5.)
-        {
-            setAcceleration(sf::Vector2f(curraccel.x, curraccel.y));
-        }
-        else
-        {
-            setVelocity(0.,0.);
-        }
-        */
 
         setAcceleration(0., 0.);
     }
-    
+    void Catapult::updateThrow(sf::Time delta)
+    {
+        if(!throwing_ && !throwPressed_)
+        {
+            //If we are not currently throwing and throw key not pressed
+            if(currentForce_ > forcemin_)
+            {
+                //if the current force is different of forcemin_
+                //we are throwing
+                throwing_ = true;
+                elapsedTime_.restart();
+            }
+        }
+        if(throwing_)
+        {
+            //we can animate the catapult
+            if(elapsedTime_.getElapsedTime().asSeconds() > sprites_[currentframe_].timetonext)
+            {
+                if(currentframe_ < 7 && currentForce_ > forcemin_)
+                {
+                    currentframe_++;
+                    elapsedTime_.restart();
+                }
+                if(currentframe_ == 7)
+                {
+                    currentframe_--;
+                    currentForce_ = forcemin_;
+                    elapsedTime_.restart();
+                    //throw projectile
+                }
+                if(currentframe_ > 0 && currentForce_ <= forcemin_)
+                {
+                    currentframe_--;
+                    elapsedTime_.restart();
+                }
+                if(currentframe_ == 0 && currentForce_ <= forcemin_)
+                {
+                    throwing_ = false;               
+                }
+            }
+        }
+        //we reset throwPressed
+        throwPressed_ = false;
+    }
+
     void Catapult::updateMovementBoundaries()
     {
         if(getVelocity().y > maxvelocity_ && getAcceleration().y > 0)
@@ -143,13 +175,14 @@ namespace faod
 
         if(throwing_) return;
 
+        throwPressed_ = true;
         if(currentForce_ + increment < forcemax_)
         {
             currentForce_ += increment;
         }
         else
         {
-            currentForce_ = increment;
+            currentForce_ = forcemax_;
             throwing_ = true;
         }
     }
