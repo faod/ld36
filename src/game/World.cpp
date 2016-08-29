@@ -1,6 +1,7 @@
 #include <game/World.hpp>
 #include <states/GameState.hpp>
 #include <objects/Catapult.hpp>
+#include <objects/Foe.hpp>
 #include <objects/Projectile.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -74,6 +75,10 @@ namespace faod
         {
             context_.textures_->load("catapult", "assets/sprites/Catapult.png");
         }
+        if(!context_.textures_->isIn("foe"))
+        {
+            context_.textures_->load("foe", "assets/sprites/Foes.png");
+        }
     }
 
     void World::buildScene()
@@ -114,7 +119,7 @@ namespace faod
         }
         /*
          * End of loading pickups
-         */ 
+         */
         {
             //First thing first, add the catapult
             //Find catapult position on map
@@ -124,15 +129,20 @@ namespace faod
 
             for(auto it = objects.begin(); it != objects.end(); ++it)
             {
+                x = it->GetX();
+                y = it->GetY();
                 if(it->GetName() == "catapult")
                 {
-                    x = it->GetX();
-                    y = it->GetY();
+                    catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
+                    Catapult::Smart_ptr ptr(catapult_);
+                    sceneGraph_.attachChild(std::move(ptr));
+                }
+                else
+                {
+                    Foe *foe = new Foe(context_.textures_->get("foe"), 0, x, y);
+                    sceneGraph_.attachChild(Foe::Smart_ptr(foe));
                 }
             }
-        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
-        Catapult::Smart_ptr ptr(catapult_);
-        sceneGraph_.attachChild(std::move(ptr));
         }
 
     }

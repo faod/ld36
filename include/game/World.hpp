@@ -21,6 +21,7 @@ namespace faod
 {
     class GameState;
     class Catapult;
+    class Foe;
     class World
     {
         public:
