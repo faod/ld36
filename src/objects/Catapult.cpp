@@ -15,7 +15,7 @@ namespace faod
     const float Catapult::initialmaxvelocity_  = 30.;
 
     Catapult::Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts, int startx, int starty)
-        :CollidableObject(ConvexHull(0)) //FIXME
+        :CollidableObject(ConvexHull::boxHull(glm::vec2(60., 64.)))
         ,fonts_(fonts)
         ,hp_(100)
         ,ammo_(3)
@@ -194,6 +194,7 @@ namespace faod
     }
     void Catapult::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
     {
+        CollidableObject::drawDebug(target, states);
         static sf::Text speed("speed", fonts_->get("pixel"), 12);
         
         speed.setFillColor(sf::Color(0,0,255));
