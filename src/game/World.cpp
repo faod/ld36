@@ -96,7 +96,7 @@ namespace faod
                     it->visible = false;
                     sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
                     pump = new Pumpkin(*text, x + 6, y - 10);
-                    sceneGraph_.attachChild(std::move(std::unique_ptr<Pumpkin>(pump)));
+                    sceneGraph_.attachChild(std::shared_ptr<Pumpkin>(pump));
                 }
                 //Rocks
                 if(it->GetName() == "rock")
@@ -107,7 +107,7 @@ namespace faod
                     it->visible = false;
                     sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
                     pump = new Rock(*text, x + 6, y - 10);
-                    sceneGraph_.attachChild(std::move(std::unique_ptr<Rock>(pump)));
+                    sceneGraph_.attachChild(std::shared_ptr<Rock>(pump));
                 }
             }
 

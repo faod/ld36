@@ -17,7 +17,7 @@ namespace faod
     class SceneNode : public sf::Transformable, public sf::Drawable
     {
         public:
-            typedef std::unique_ptr<SceneNode> Smart_ptr;
+            typedef std::shared_ptr<SceneNode> Smart_ptr;
 
         public:
 
