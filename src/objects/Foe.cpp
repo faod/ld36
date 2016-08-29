@@ -61,5 +61,9 @@ namespace faod
     void Foe::collideWith(CollidableObject &other)
     {
     }
+    Collision::Type Foe::getCollisionType() const
+    {
+        return Collision::Type::Foe;
+    }
 
 }

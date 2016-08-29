@@ -14,6 +14,7 @@ namespace faod
 
 
             void collideWith(CollidableObject &other);
+            virtual Collision::Type getCollisionType() const;
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
