@@ -59,8 +59,8 @@ namespace faod
         sprites_[7].sprite.setTextureRect(sf::IntRect(448, 0, 64, 64));
         sprites_[7].timetonext = 0.1;
 
-        setPosition(startx, starty);
         setOrigin(33, 32);
+        setPosition(startx, starty);
     }
     void Catapult::moveInput(sf::Vector2f movement, sf::Time delta)
     {

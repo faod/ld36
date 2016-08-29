@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 
+
 namespace faod
 {
     World::World(sf::RenderWindow& window, GameState &state, State::Context context, std::string mapname)
@@ -77,7 +78,21 @@ namespace faod
     void World::buildScene()
     {
         //First thing first, add the catapult
-        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_);
+        //Find catapult position on map
+        tmx::ObjectGroup &obj = map_->GetObjectGroup("spawns");
+        auto &objects = obj.GetObjects();
+        float x, y;
+
+        for(auto it = objects.begin(); it != objects.end(); ++it)
+        {
+            if(it->GetName() == "catapult")
+            {
+                x = it->GetX();
+                y = it->GetY();
+            }
+        }
+
+        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
         Catapult::Smart_ptr ptr(catapult_);
         sceneGraph_.attachChild(std::move(ptr));
     }
