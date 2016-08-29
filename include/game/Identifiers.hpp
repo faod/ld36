@@ -34,7 +34,10 @@ namespace faod
             None        = 0,
             Catapult    = 1,
             Projectile  = 1 << 1,
-            Bonus       = 1 << 2
+            Bonus       = 1 << 2,
+            Foe         = 1 << 3,
+            Destroyable = 1 << 4,
+            Solid       = 1 << 5
         };
     }
 
