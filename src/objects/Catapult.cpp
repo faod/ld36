@@ -1,5 +1,7 @@
 #include <objects/Catapult.hpp>
+#include <objects/Projectile.hpp>
 #include <game/Identifiers.hpp>
+#include <objects/CollisionManager.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -18,7 +20,6 @@ namespace faod
         :CollidableObject(ConvexHull::boxHull(glm::vec2(60., 64.)), manager)
         ,fonts_(fonts)
         ,hp_(100)
-        ,ammo_(3)
         ,forcemax_(initialforcemax_)
         ,maxvelocity_(initialmaxvelocity_)
         ,texture_(texture)
@@ -26,6 +27,7 @@ namespace faod
         ,throwing_(false)
         ,throwPressed_(false)
         ,currentForce_(forcemin_)
+        ,projectile_(nullptr)
     {
         sf::Sprite sprite;
         sprite.setTexture(texture_);
@@ -107,8 +109,9 @@ namespace faod
 
 
         //Call CollidableObject::update
-        //Collisions will be calculated and then object will be moved (or not if colliding
+        //Collisions will be calculated and then object will be moved (or not if colliding)
         CollidableObject::updateCurrent(delta);
+        manager_->collisionCheck(*this);        
 
         updateThrow(delta);
 
@@ -184,7 +187,29 @@ namespace faod
     }
     void Catapult::collideWith(CollidableObject &other)
     {
+        //check for type
+        if(other.getCollisionType() == Collision::Type::Bonus)
+        {
+            try
+            {
+                //is it a projectile?
+                //
+                Projectile &p = dynamic_cast<Projectile&>(other);    
+                
+                //can we pick it up?
+                if(projectile_)
+                    return;
 
+                auto temp = parent_->detachChild(p);
+                attachChild(temp);
+                projectile_ = static_cast<Projectile*>(temp.get());
+                projectile_->pickedUp(*this);
+
+            } catch(std::bad_cast)
+            {
+                //Not a projectile
+            }
+        }
     }
 
     void Catapult::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const

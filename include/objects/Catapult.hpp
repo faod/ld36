@@ -9,6 +9,7 @@
 
 namespace faod
 {
+    class Projectile;
     class CollisionManager;
     class Catapult : public CollidableObject
     {
@@ -44,7 +45,6 @@ namespace faod
             ResourceHolder<sf::Font, std::string> *fonts_;
             //Game logic
             unsigned int            hp_;
-            unsigned int            ammo_;
             float                   forcemax_;
             //rad, counterclockwise
             float                   maxsteeringangle_;
@@ -59,5 +59,6 @@ namespace faod
             bool                    throwing_;
             bool                    throwPressed_;
             float                   currentForce_;
+            Projectile              *projectile_;
     };
 }

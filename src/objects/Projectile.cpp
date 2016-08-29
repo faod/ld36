@@ -29,7 +29,10 @@ namespace faod
     {
 
     }
-
+    void Projectile::pickedUp(Catapult &c)
+    {
+        setPosition(c.getOrigin());        
+    }
     void Projectile::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(sprite_, states);

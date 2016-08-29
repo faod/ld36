@@ -7,6 +7,7 @@
 namespace faod
 {
     class CollisionManager;
+    class Catapult;
     class Projectile : public CollidableObject
     {
         public:
@@ -14,7 +15,7 @@ namespace faod
             void launch(sf::Vector2f dir, float force);
 
             void collideWith(CollidableObject &other);
-
+            void pickedUp(Catapult &c);
             //virtual Collision::Type getCollisionType() const;
         protected:
             bool launched_;
