@@ -3,7 +3,7 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/System/Time.hpp>
 
-#include <STP/TMXLoader.hpp>
+#include <STP/Loader.hpp>
 
 #include <objects/SceneNode.hpp>
 #include <game/CommandQueue.hpp>

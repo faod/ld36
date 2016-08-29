@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 
-#include <STP/TMXLoader.hpp>
+#include <STP/Loader.hpp>
 
 #include <memory>
 

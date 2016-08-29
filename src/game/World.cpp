@@ -89,6 +89,7 @@ namespace faod
             mapList_->load(mapname_, mapname_);
         }
         map_ = &mapList_->get(mapname_);
+        map_->ShowObjects();
         //continue loading map
     }
 }

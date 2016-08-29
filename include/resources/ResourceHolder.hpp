@@ -4,7 +4,7 @@
 #include <map>
 #include <memory>
 
-#include <STP/TMXLoader.hpp>
+#include <STP/Loader.hpp>
 
 namespace faod
 {
