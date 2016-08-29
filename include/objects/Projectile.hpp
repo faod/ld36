@@ -26,4 +26,10 @@ namespace faod
             Pumpkin(sf::Texture &texture, int startw, int starth);
     };
 
+    class Rock : public Projectile
+    {
+        public:
+            Rock(sf::Texture &texture, int startw, int starth);
+    };
+
 }

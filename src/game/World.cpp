@@ -78,26 +78,6 @@ namespace faod
 
     void World::buildScene()
     {
-        {
-            //First thing first, add the catapult
-            //Find catapult position on map
-            tmx::ObjectGroup &obj = map_->GetObjectGroup("spawns");
-            auto &objects = obj.GetObjects();
-            float x, y;
-
-            for(auto it = objects.begin(); it != objects.end(); ++it)
-            {
-                if(it->GetName() == "catapult")
-                {
-                    x = it->GetX();
-                    y = it->GetY();
-                }
-            }
-        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
-        Catapult::Smart_ptr ptr(catapult_);
-        sceneGraph_.attachChild(std::move(ptr));
-        }
-
         /*
          * Then all the pickups
          */
@@ -118,12 +98,43 @@ namespace faod
                     pump = new Pumpkin(*text, x + 6, y - 10);
                     sceneGraph_.attachChild(std::move(std::unique_ptr<Pumpkin>(pump)));
                 }
+                //Rocks
+                if(it->GetName() == "rock")
+                {
+                    Rock *pump = nullptr;
+                    float x = it->GetX();
+                    float y = it->GetY();
+                    it->visible = false;
+                    sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
+                    pump = new Rock(*text, x + 6, y - 10);
+                    sceneGraph_.attachChild(std::move(std::unique_ptr<Rock>(pump)));
+                }
             }
 
         }
         /*
          * End of loading pickups
          */ 
+        {
+            //First thing first, add the catapult
+            //Find catapult position on map
+            tmx::ObjectGroup &obj = map_->GetObjectGroup("spawns");
+            auto &objects = obj.GetObjects();
+            float x, y;
+
+            for(auto it = objects.begin(); it != objects.end(); ++it)
+            {
+                if(it->GetName() == "catapult")
+                {
+                    x = it->GetX();
+                    y = it->GetY();
+                }
+            }
+        catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
+        Catapult::Smart_ptr ptr(catapult_);
+        sceneGraph_.attachChild(std::move(ptr));
+        }
+
     }
     void World::loadMap()
     {

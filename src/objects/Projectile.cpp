@@ -29,4 +29,9 @@ namespace faod
     {
     }
 
+    Rock::Rock(sf::Texture &texture, int startw, int starth)
+        :Projectile(texture, startw, starth, 50., 64, 240)
+    {
+    }
+
 }
