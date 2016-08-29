@@ -19,7 +19,8 @@ namespace faod
                 Forward,
                 Backward,
                 LeftSteer,
-                RightSteer
+                RightSteer,
+                Throw
             };
         public:
             PlayerController();

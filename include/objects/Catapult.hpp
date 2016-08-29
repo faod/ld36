@@ -16,7 +16,8 @@ namespace faod
 
             //Called to request a movement in the [-100. : 100.] range
             void moveInput(sf::Vector2f movement, sf::Time delta);
-
+            //Called to request a throw
+            void throwProjectile(sf::Time delta);
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

@@ -120,6 +120,9 @@ namespace faod
         }
 
     }
+    void Catapult::throwProjectile(sf::Time delta)
+    {
+    }
 
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const
     {

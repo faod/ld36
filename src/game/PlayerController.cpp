@@ -14,7 +14,7 @@ namespace faod
         keyBinding_[sf::Keyboard::Right]    = Action::RightSteer;
         keyBinding_[sf::Keyboard::Up]       = Action::Forward;
         keyBinding_[sf::Keyboard::Down]     = Action::Backward;
-
+        keyBinding_[sf::Keyboard::Space]    = Action::Throw;
         //initial actions binding
         initializeActions();
 
@@ -59,6 +59,7 @@ namespace faod
             case Action::RightSteer:
             case Action::Forward:
             case Action::Backward:
+            case Action::Throw:
                 return true;
             default:
                 return false;
@@ -113,5 +114,7 @@ namespace faod
                 (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(0.,-100.),std::placeholders::_2));
         actionBinding_[Action::Backward].action_ = derivedAction<Catapult>
                 (std::bind(&Catapult::moveInput, std::placeholders::_1, sf::Vector2f(0.,100.),std::placeholders::_2));
+        actionBinding_[Action::Throw].action_ = derivedAction<Catapult>
+                (std::bind(&Catapult::throwProjectile, std::placeholders::_1, std::placeholders::_2));
     }
 }
