@@ -12,6 +12,8 @@ namespace faod
             Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty);
             void launch(sf::Vector2f dir, float force);
 
+            void collideWith(CollidableObject &other);
+
             //virtual Collision::Type getCollisionType() const;
         protected:
             bool launched_;

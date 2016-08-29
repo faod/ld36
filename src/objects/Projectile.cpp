@@ -25,6 +25,10 @@ namespace faod
     {
 
     }
+    void Projectile::collideWith(CollidableObject &other)
+    {
+
+    }
 
     void Projectile::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
     {
