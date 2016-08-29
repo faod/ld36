@@ -27,4 +27,15 @@ namespace faod
         };
     }
 
+    namespace Collision
+    {
+        enum Type
+        {
+            None        = 0,
+            Catapult    = 1,
+            Projectile  = 1 << 1,
+            Bonus       = 1 << 2
+        };
+    }
+
 }
