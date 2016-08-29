@@ -1,5 +1,6 @@
 #include <objects/ConvexHull.hpp>
 
+#include <SFML/Graphics/ConvexShape.hpp>
 
 #include <glm/glm.hpp>
 #include <cstring>
@@ -9,10 +10,10 @@ namespace faod
     ConvexHull ConvexHull::boxHull(glm::vec2 wh)
     {
         ConvexHull c(4);
-        c.points_[0] = glm::vec2(0.);
-        c.points_[1] = glm::vec2(wh.x, 0);
-        c.points_[2] = glm::vec2(wh.x, wh.y);
-        c.points_[3] = glm::vec2(0., wh.y);
+        c.points_[0] = -(wh/2.f);
+        c.points_[1] = glm::vec2(wh.x/2,-wh.y/2.);
+        c.points_[2] = wh/2.f;
+        c.points_[3] = glm::vec2(-wh.x/2., wh.y/2.);
         return c;
     }
     ConvexHull ConvexHull::triHull(float w, float h)
@@ -147,5 +148,18 @@ namespace faod
         }
         return false;
     }
-
+    void ConvexHull::draw(sf::RenderTarget &target, sf::RenderStates states) const
+    {
+        sf::Color color(0,0,255);
+        sf::ConvexShape shape(len_);
+        
+        for(int i = 0; i < len_; i++)
+        {
+            shape.setPoint(i, sf::Vector2f(points_[i].x, points_[i].y));
+        }
+        shape.setFillColor(sf::Color::Transparent);
+        shape.setOutlineColor(color);
+        shape.setOutlineThickness(1.);
+        target.draw(shape);
+    }
 }

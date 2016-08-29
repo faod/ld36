@@ -1,6 +1,8 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
+
 
 #define m_sign(x) ((x) >= 0 ? 1. : -1.)
 #define PI 3.14159
@@ -33,7 +35,8 @@ namespace faod
 
             //true whenever this intersects with other
             bool intersects(const ConvexHull &other) const;
-
+            
+            void draw(sf::RenderTarget &target, sf::RenderStates states) const;           
         private:
             unsigned int len_;
             glm::vec2 *points_;
