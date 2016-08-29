@@ -1,17 +1,27 @@
 #include <objects/CollisionManager.hpp>
 
 #include <objects/Catapult.hpp>
+#include <objects/Projectile.hpp>
 
 namespace faod
 {
     CollisionManager::CollisionManager()
     {
         //add collisions to the map
+        //catapult collision
         Collision c;
-        c.mask = faod::Collision::Type::Bonus;
+        c.mask = faod::Collision::Type::Bonus | faod::Collision::Type::Destroyable | faod::Collision::Type::Solid | faod::Collision::Type::Foe;
         c.action = derivedCollision<Catapult>
             (std::bind(&Catapult::collideWith, std::placeholders::_1, std::placeholders::_2));
         collisions_[faod::Collision::Type::Catapult] = c;
+
+        //projectile collision
+        c.mask = faod::Collision::Type::Foe | faod::Collision::Type::Solid | faod::Collision::Type::Destroyable;
+        c.action = derivedCollision<Projectile>
+            (std::bind(&Projectile::collideWith, std::placeholders::_1, std::placeholders::_2));
+        collisions_[faod::Collision::Type::Projectile] = c;
+
+        //
     }
     void CollisionManager::collisionCheck(CollidableObject& object)
     {
