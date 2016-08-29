@@ -9,10 +9,11 @@
 
 namespace faod
 {
+    class CollisionManager;
     class Catapult : public CollidableObject
     {
         public:
-            Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts,int startw = 400, int starth = 300);
+            Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts, CollisionManager *manager,int startw = 400, int starth = 300);
 
             virtual unsigned int getCategory() const;
 

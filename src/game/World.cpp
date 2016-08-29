@@ -100,8 +100,10 @@ namespace faod
                     float y = it->GetY();
                     it->visible = false;
                     sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
-                    pump = new Pumpkin(*text, x + 6, y - 10);
-                    sceneGraph_.attachChild(std::shared_ptr<Pumpkin>(pump));
+                    pump = new Pumpkin(*text, x + 6, y - 10, &manager_);
+                    Pumpkin::Smart_ptr ptr(pump);
+                    sceneGraph_.attachChild(ptr);
+                    manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));
                 }
                 //Rocks
                 if(it->GetName() == "rock")
@@ -111,8 +113,10 @@ namespace faod
                     float y = it->GetY();
                     it->visible = false;
                     sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
-                    pump = new Rock(*text, x + 6, y - 10);
-                    sceneGraph_.attachChild(std::shared_ptr<Rock>(pump));
+                    pump = new Rock(*text, x + 6, y - 10, &manager_);
+                    Rock::Smart_ptr ptr(pump);
+                    sceneGraph_.attachChild(ptr);
+                    manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));
                 }
             }
 
@@ -133,14 +137,17 @@ namespace faod
                 y = it->GetY();
                 if(it->GetName() == "catapult")
                 {
-                    catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
+                    catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, &manager_, x, y);
                     Catapult::Smart_ptr ptr(catapult_);
                     sceneGraph_.attachChild(std::move(ptr));
+                    manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));
                 }
                 else
                 {
-                    Foe *foe = new Foe(context_.textures_->get("foe"), 0, x, y);
-                    sceneGraph_.attachChild(Foe::Smart_ptr(foe));
+                    Foe *foe = new Foe(context_.textures_->get("foe"), 0, x, y, &manager_);
+                    Foe::Smart_ptr ptr(foe);
+                    sceneGraph_.attachChild(ptr);
+                    manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));
                 }
             }
         }

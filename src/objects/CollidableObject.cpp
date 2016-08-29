@@ -2,7 +2,7 @@
 
 namespace faod
 {
-    CollidableObject::CollidableObject(const ConvexHull& convexHull) : Object(), convexHull_(convexHull)
+    CollidableObject::CollidableObject(const ConvexHull& convexHull, CollisionManager *manager) : Object(), convexHull_(convexHull), manager_(manager)
     {
     }
 

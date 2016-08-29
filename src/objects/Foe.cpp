@@ -5,8 +5,8 @@
 namespace faod
 {
 
-    Foe::Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y):
-        CollidableObject(ConvexHull::boxHull(glm::vec2(32., 24.))),
+    Foe::Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, CollisionManager *manager):
+        CollidableObject(ConvexHull::boxHull(glm::vec2(32., 24.)), manager),
         texture_(texture),
         walkAnimation_(false),
         shieldAnimation_(false),

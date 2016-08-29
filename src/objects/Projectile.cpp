@@ -5,8 +5,8 @@
 #include <SFML/Graphics/Rect.hpp>
 namespace faod
 {
-    Projectile::Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty)
-        :CollidableObject(ConvexHull::boxHull(glm::vec2(16., 16.)))
+    Projectile::Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty, CollisionManager *manager)
+        :CollidableObject(ConvexHull::boxHull(glm::vec2(16., 16.)), manager)
         ,weight_(weight)
         ,texture_(texture)
         ,launched_(false)
@@ -35,8 +35,8 @@ namespace faod
         target.draw(sprite_, states);
     }
 
-    Pumpkin::Pumpkin(sf::Texture &texture, int startw, int starth)
-        :Projectile(texture, startw, starth, 10., 0, 240)
+    Pumpkin::Pumpkin(sf::Texture &texture, int startw, int starth, CollisionManager *manager)
+        :Projectile(texture, startw, starth, 10., 0, 240, manager)
     {
     }
     Collision::Type Pumpkin::getCollisionType() const
@@ -53,8 +53,8 @@ namespace faod
         return Collision::Type::None;
     }
 
-    Rock::Rock(sf::Texture &texture, int startw, int starth)
-        :Projectile(texture, startw, starth, 50., 64, 240)
+    Rock::Rock(sf::Texture &texture, int startw, int starth, CollisionManager *manager)
+        :Projectile(texture, startw, starth, 50., 64, 240, manager)
     {
     }
     Collision::Type Rock::getCollisionType() const

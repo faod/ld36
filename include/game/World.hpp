@@ -10,6 +10,7 @@
 #include <resources/ResourceHolder.hpp>
 #include <states/State.hpp>
 #include <states/GameState.hpp>
+#include <objects/CollisionManager.hpp>
 
 //forward declaration
 namespace sf
@@ -63,5 +64,8 @@ namespace faod
             std::string   mapname_;
             tmx::TileMap *map_;
             ResourceHolder<tmx::TileMap, std::string> *mapList_;
+
+            //Collision Manager
+            CollisionManager manager_;
     };
 }

@@ -6,10 +6,11 @@
 
 namespace faod
 {
+    class CollisionManager;
     class Projectile : public CollidableObject
     {
         public:
-            Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty);
+            Projectile(sf::Texture &texture, int startw, int starth, float weight, int textx, int texty, CollisionManager *manager);
             void launch(sf::Vector2f dir, float force);
 
             void collideWith(CollidableObject &other);
@@ -30,7 +31,7 @@ namespace faod
     class Pumpkin : public Projectile
     {
         public:
-            Pumpkin(sf::Texture &texture, int startw, int starth);
+            Pumpkin(sf::Texture &texture, int startw, int starth, CollisionManager *manager);
 
             virtual Collision::Type getCollisionType() const;
     };
@@ -38,7 +39,7 @@ namespace faod
     class Rock : public Projectile
     {
         public:
-            Rock(sf::Texture &texture, int startw, int starth);
+            Rock(sf::Texture &texture, int startw, int starth, CollisionManager *manager);
 
             virtual Collision::Type getCollisionType() const;
     };

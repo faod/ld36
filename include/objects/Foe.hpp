@@ -7,10 +7,11 @@
 
 namespace faod
 {
+    class CollisionManager;
     class Foe: public CollidableObject
     {
         public:
-            Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y);
+            Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, CollisionManager *manager);
 
 
             void collideWith(CollidableObject &other);

@@ -14,8 +14,8 @@ namespace faod
     const float Catapult::initialforcemax_ = 2.;
     const float Catapult::initialmaxvelocity_  = 30.;
 
-    Catapult::Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts, int startx, int starty)
-        :CollidableObject(ConvexHull::boxHull(glm::vec2(60., 64.)))
+    Catapult::Catapult(sf::Texture &texture, ResourceHolder<sf::Font, std::string> *fonts, CollisionManager *manager, int startx, int starty)
+        :CollidableObject(ConvexHull::boxHull(glm::vec2(60., 64.)), manager)
         ,fonts_(fonts)
         ,hp_(100)
         ,ammo_(3)

@@ -5,8 +5,10 @@
 
 #include <game/Identifiers.hpp>
 
+
 namespace faod
 {
+    class CollisionManager;
     class CollidableObject : public Object
     {
         public:
@@ -16,7 +18,7 @@ namespace faod
             CollidableObject& operator=(CollidableObject &&o) = delete;
 
 
-            explicit CollidableObject(const ConvexHull &convexHull);
+            CollidableObject(const ConvexHull &convexHull, CollisionManager *manager);
 
             //true if the objects are currently colliding
             bool isColliding(const CollidableObject& other) const;
@@ -31,6 +33,8 @@ namespace faod
         protected:
             virtual void    updateCurrent(sf::Time delta);
             virtual void    drawDebug(sf::RenderTarget &target, sf::RenderStates states) const;
+
+            CollisionManager *manager_;
         private:
             ConvexHull convexHull_;
 
