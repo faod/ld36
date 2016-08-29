@@ -1,6 +1,7 @@
 #include <game/World.hpp>
 #include <states/GameState.hpp>
 #include <objects/Catapult.hpp>
+#include <objects/Projectile.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -77,24 +78,52 @@ namespace faod
 
     void World::buildScene()
     {
-        //First thing first, add the catapult
-        //Find catapult position on map
-        tmx::ObjectGroup &obj = map_->GetObjectGroup("spawns");
-        auto &objects = obj.GetObjects();
-        float x, y;
-
-        for(auto it = objects.begin(); it != objects.end(); ++it)
         {
-            if(it->GetName() == "catapult")
-            {
-                x = it->GetX();
-                y = it->GetY();
-            }
-        }
+            //First thing first, add the catapult
+            //Find catapult position on map
+            tmx::ObjectGroup &obj = map_->GetObjectGroup("spawns");
+            auto &objects = obj.GetObjects();
+            float x, y;
 
+            for(auto it = objects.begin(); it != objects.end(); ++it)
+            {
+                if(it->GetName() == "catapult")
+                {
+                    x = it->GetX();
+                    y = it->GetY();
+                }
+            }
         catapult_ = new Catapult(context_.textures_->get("catapult"), context_.fonts_, x, y);
         Catapult::Smart_ptr ptr(catapult_);
         sceneGraph_.attachChild(std::move(ptr));
+        }
+
+        /*
+         * Then all the pickups
+         */
+        {
+            tmx::ObjectGroup &obj = map_->GetObjectGroup("bonuses");
+            auto &objects = obj.GetObjects();
+
+            for(auto it = objects.begin(); it != objects.end(); ++it)
+            {
+                //Pumpkins
+                if(it->GetName() == "pumpkin")
+                {
+                    Pumpkin *pump = nullptr;
+                    float x = it->GetX();
+                    float y = it->GetY();
+                    it->visible = false;
+                    sf::Texture *text = const_cast<sf::Texture*>(it->tile_.GetTexture());
+                    pump = new Pumpkin(*text, x + 6, y - 10);
+                    sceneGraph_.attachChild(std::move(std::unique_ptr<Pumpkin>(pump)));
+                }
+            }
+
+        }
+        /*
+         * End of loading pickups
+         */ 
     }
     void World::loadMap()
     {
