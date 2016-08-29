@@ -12,6 +12,8 @@ namespace faod
         public:
             Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y);
 
+
+            void collideWith(CollidableObject &other);
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

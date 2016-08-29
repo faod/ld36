@@ -58,5 +58,8 @@ namespace faod
     {
         CollidableObject::drawDebug(target, states);
     }
+    void Foe::collideWith(CollidableObject &other)
+    {
+    }
 
 }
