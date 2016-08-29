@@ -182,6 +182,11 @@ namespace faod
         target.draw(*current_, states);
 
     }
+    void Catapult::collideWith(CollidableObject &other)
+    {
+
+    }
+
     void Catapult::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
     {
         CollidableObject::drawDebug(target, states);

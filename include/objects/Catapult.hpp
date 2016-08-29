@@ -25,6 +25,8 @@ namespace faod
             float getForceMax() const;
             float getCurrentForce() const;
 
+            void collideWith(CollidableObject &other);
+
         private:
             virtual void updateCurrent(sf::Time delta);
             virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
