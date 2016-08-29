@@ -2,6 +2,7 @@
 
 #include <objects/Catapult.hpp>
 #include <objects/Projectile.hpp>
+#include <objects/Foe.hpp>
 
 namespace faod
 {
@@ -21,7 +22,11 @@ namespace faod
             (std::bind(&Projectile::collideWith, std::placeholders::_1, std::placeholders::_2));
         collisions_[faod::Collision::Type::Projectile] = c;
 
-        //
+        //foe collision
+        c.mask = faod::Collision::Type::Catapult | faod::Collision::Type::Foe | faod::Collision::Type::Poison | faod::Collision::Type::Destroyable | faod::Collision::Type::Solid;
+        c.action = derivedCollision<Foe>
+            (std::bind(&Foe::collideWith, std::placeholders::_1, std::placeholders::_2));
+        
     }
     void CollisionManager::collisionCheck(CollidableObject& object)
     {
