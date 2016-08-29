@@ -16,7 +16,7 @@ namespace faod
             //returns a rectangle ConvexHull with width = wh.x and height = wh.y
             static ConvexHull boxHull(glm::vec2 wh);
             //returns an isocele triangle
-            static ConvexHull triHull(float w, float h);
+            static ConvexHull triHull(float w, float h, float angle);
 
             ConvexHull(unsigned int len, glm::vec2 *points);
             ConvexHull(unsigned int len);
@@ -35,8 +35,8 @@ namespace faod
 
             //true whenever this intersects with other
             bool intersects(const ConvexHull &other) const;
-            
-            void draw(sf::RenderTarget &target, sf::RenderStates states) const;           
+
+            void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         private:
             unsigned int len_;
             glm::vec2 *points_;

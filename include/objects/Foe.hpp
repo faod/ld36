@@ -11,9 +11,9 @@ namespace faod
     class Foe: public CollidableObject
     {
         public:
-            Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, CollisionManager *manager);
+            Foe(sf::Texture &texture, int row, int spawn_x, int spawn_y, float orient, CollisionManager *manager);
 
-
+            ConvexHull getFOV() const;
             void collideWith(CollidableObject &other);
             virtual Collision::Type getCollisionType() const;
         private:
@@ -32,5 +32,7 @@ namespace faod
 
             //Game logic
             unsigned int hp_;
+
+            static ConvexHull fov;
     };
 }

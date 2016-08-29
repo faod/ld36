@@ -144,7 +144,7 @@ namespace faod
                 }
                 else
                 {
-                    Foe *foe = new Foe(context_.textures_->get("foe"), 0, x, y, &manager_);
+                    Foe *foe = new Foe(context_.textures_->get("foe"), 3, x, y, it->rotation_, &manager_);
                     Foe::Smart_ptr ptr(foe);
                     sceneGraph_.attachChild(ptr);
                     manager_.addCollidable(std::static_pointer_cast<CollidableObject>(ptr));

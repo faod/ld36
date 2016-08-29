@@ -16,12 +16,13 @@ namespace faod
         c.points_[3] = glm::vec2(-wh.x/2., wh.y/2.);
         return c;
     }
-    ConvexHull ConvexHull::triHull(float w, float h)
+    ConvexHull ConvexHull::triHull(float w, float h, float angle)
     {
         ConvexHull c(3);
         c.points_[0] = glm::vec2(0.);
         c.points_[1] = glm::vec2(-(w/2.), h);
         c.points_[2] = glm::vec2( (w/2.), h);
+        c.rotate(angle);
 
         return c;
     }
