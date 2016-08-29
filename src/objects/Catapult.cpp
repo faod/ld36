@@ -23,6 +23,9 @@ namespace faod
         ,maxvelocity_(initialmaxvelocity_)
         ,texture_(texture)
         ,currentframe_(0)
+        ,throwing_(false)
+        ,throwPressed_(false)
+        ,currentForce_(forcemin_)
     {
         sprites_[0].sprite.setTexture(texture_);
         sprites_[0].sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
@@ -122,6 +125,21 @@ namespace faod
     }
     void Catapult::throwProjectile(sf::Time delta)
     {
+        //time for full throw in sec
+        const float timeToFull = 1.2;
+        const float increment  = (((forcemax_ - forcemin_) / timeToFull) * delta.asSeconds());
+
+        if(throwing_) return;
+
+        if(currentForce_ + increment < forcemax_)
+        {
+            currentForce_ += increment;
+        }
+        else
+        {
+            currentForce_ = increment;
+            throwing_ = true;
+        }
     }
 
     void Catapult::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const

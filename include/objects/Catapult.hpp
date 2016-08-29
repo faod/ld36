@@ -49,5 +49,11 @@ namespace faod
             sf::Texture             &texture_;
             std::array<Sprite, 8>   sprites_;
             size_t                  currentframe_;
+
+
+            //Throwing projectile related vars
+            bool                    throwing_;
+            bool                    throwPressed_;
+            float                   currentForce_;
     };
 }
