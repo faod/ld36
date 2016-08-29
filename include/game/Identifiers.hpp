@@ -37,7 +37,8 @@ namespace faod
             Bonus       = 1 << 2,
             Foe         = 1 << 3,
             Destroyable = 1 << 4,
-            Solid       = 1 << 5
+            Solid       = 1 << 5,
+            Poison      = 1 << 6
         };
     }
 
