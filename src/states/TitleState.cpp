@@ -1,6 +1,7 @@
 #include <states/TitleState.hpp>
 
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include <utils/HSL.hpp>
@@ -9,6 +10,12 @@ namespace faod
 {
     TitleState::TitleState(StateStack& stack, Context context) : State(stack, context)
     {
+        // Background image
+        if(!context.textures_->isIn("title_bg"))
+        {
+            context.textures_->load("title_bg", "assets/title.png");
+        }
+
         //menu prompt initialisation
         menuprompt_.setFont(context.fonts_->get("pixel"));
         menuprompt_.setString("Press [space] to start the game");
@@ -23,6 +30,11 @@ namespace faod
     void TitleState::draw() {
         Context context = getContext();
         context.window_->clear(HSL(current_.asMilliseconds()/10, .5, .3).toRGB());
+
+        // Draw background image
+        sf::Transform sc; sc = sc.scale(5.0, 5.0);
+        sf::Transform tr; tr = tr.translate(40.0, 30.0);
+        context.window_->draw(sf::Sprite(context.textures_->get("title_bg")), sf::RenderStates(tr * sc));
 
         //draw menuprompt
         context.window_->draw(menuprompt_);

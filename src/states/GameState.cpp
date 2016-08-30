@@ -1,4 +1,5 @@
 #include <states/GameState.hpp>
+#include <objects/Catapult.hpp>
 #include <game/World.hpp>
 #include <game/CommandQueue.hpp>
 #include <game/PlayerController.hpp>
@@ -26,6 +27,12 @@ namespace faod
     bool GameState::update(sf::Time delta)
     {
         world_->update(delta);
+
+        if (world_->getCatapult()->getHealth() <= 0)
+        {
+            // TODO game over screen
+            requestStackPop();
+        }
 
         CommandQueue& commands = world_->getCommandQueue();
         playerController_.handleRealtimeInput(commands);

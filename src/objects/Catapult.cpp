@@ -111,11 +111,6 @@ namespace faod
     void Catapult::endure(int dmg)
     {
         hp_ -= dmg;
-        if (hp_ <= 0)
-        {
-            std::cout << "you ded -_-" << std::endl;
-            // TODO Game Over
-        }
     }
 
     void Catapult::updateCurrent(sf::Time delta)
@@ -126,7 +121,7 @@ namespace faod
         //Call CollidableObject::update
         //Collisions will be calculated and then object will be moved (or not if colliding)
         CollidableObject::updateCurrent(delta);
-        manager_->collisionCheck(*this);        
+        manager_->collisionCheck(*this);
 
         updateThrow(delta);
 
@@ -209,8 +204,8 @@ namespace faod
             {
                 //is it a projectile?
                 //
-                Projectile &p = dynamic_cast<Projectile&>(other);    
-                
+                Projectile &p = dynamic_cast<Projectile&>(other);
+
                 //can we pick it up?
                 if(projectile_)
                     return;
