@@ -140,6 +140,11 @@ namespace faod
                 throwing_ = true;
                 currentForce_ = forcemin_;
                 animation_.reset();
+
+                float dum = getRotation() * PI / 180;
+                glm::vec2 v(-glm::sin(dum), glm::cos(dum));
+                if(!projectile_) return;
+                projectile_->launch(sf::Vector2f(v.x, v.y), 0.);
             }
         }
         if(throwing_)
@@ -175,7 +180,7 @@ namespace faod
         //time for full throw in sec
         const float timeToFull = 1.2;
         const float increment  = (((forcemax_ - forcemin_) / timeToFull) * delta.asSeconds());
-
+        if(!projectile_) return;
         if(throwing_) return;
 
         throwPressed_ = true;
@@ -198,6 +203,7 @@ namespace faod
     void Catapult::collideWith(CollidableObject &other)
     {
         //check for type
+        
         if(other.getCollisionType() == Collision::Type::Bonus)
         {
             try
@@ -210,9 +216,11 @@ namespace faod
                 if(projectile_)
                     return;
 
+
                 auto temp = parent_->detachChild(p);
                 attachChild(temp);
-                projectile_ = static_cast<Projectile*>(temp.get());
+                projectile_ = dynamic_cast<Projectile*>(temp.get());
+
                 projectile_->pickedUp(*this);
 
             } catch(std::bad_cast)

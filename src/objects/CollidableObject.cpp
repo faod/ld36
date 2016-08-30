@@ -18,7 +18,7 @@ namespace faod
 
     void CollidableObject::drawDebug(sf::RenderTarget &target, sf::RenderStates states) const
     {
-        getConvexHull().draw(target, states);
+        convexHull_.draw(target, states);
     }
 
     bool CollidableObject::isColliding(const CollidableObject& other) const

@@ -14,19 +14,19 @@ namespace faod
     void SceneNode::attachChild(Smart_ptr child)
     {
         child->parent_ = this;
-        children_.push_back(std::move(child));
+        children_.push_back(child);
     }
 
     SceneNode::Smart_ptr SceneNode::detachChild(const SceneNode& node)
     {
         //look in the collection of children for the node matching the parameter
         auto found = std::find_if(children_.begin(), children_.end(),
-                [&] (Smart_ptr& p) { return p.get() == &node; });
+                [&] (Smart_ptr& p) { return p && p.get() == &node; });
         //Node expected to be child of this
         assert(found != children_.end());
 
         //move the child to a temporary smartptr
-        Smart_ptr result = std::move(*found);
+        Smart_ptr result(*found);
         result->parent_  = nullptr;
 
         //child to erase has been moved, it wont call its destructor

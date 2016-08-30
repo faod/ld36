@@ -19,11 +19,14 @@ namespace faod
 
     void Projectile::launch(sf::Vector2f dir, float force)
     {
+        glm::vec2 v(dir.x, dir.y);
+        v *= 10.;
+        setVelocity(sf::Vector2f(v.x, v.y));
     }
     
     void Projectile::updateCurrent(sf::Time delta)
     {
-
+        CollidableObject::updateCurrent(delta);
     }
     void Projectile::collideWith(CollidableObject &other)
     {

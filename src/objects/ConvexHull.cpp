@@ -161,6 +161,6 @@ namespace faod
         shape.setFillColor(sf::Color::Transparent);
         shape.setOutlineColor(color);
         shape.setOutlineThickness(1.);
-        target.draw(shape);
+        target.draw(shape, states);
     }
 }

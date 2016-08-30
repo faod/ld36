@@ -17,10 +17,10 @@ namespace faod
         collisions_[faod::Collision::Type::Catapult] = c;
 
         //projectile collision
-        c.mask = faod::Collision::Type::Foe | faod::Collision::Type::Solid | faod::Collision::Type::Destroyable;
-        c.action = derivedCollision<Projectile>
-            (std::bind(&Projectile::collideWith, std::placeholders::_1, std::placeholders::_2));
-        collisions_[faod::Collision::Type::Projectile] = c;
+        //c.mask = faod::Collision::Type::Foe | faod::Collision::Type::Solid | faod::Collision::Type::Destroyable;
+        //c.action = derivedCollision<Projectile>
+          //  (std::bind(&Projectile::collideWith, std::placeholders::_1, std::placeholders::_2));
+        //collisions_[faod::Collision::Type::Projectile] = c;
 
         //foe collision
         c.mask = faod::Collision::Type::Catapult | faod::Collision::Type::Foe | faod::Collision::Type::Poison | faod::Collision::Type::Destroyable | faod::Collision::Type::Solid;
