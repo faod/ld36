@@ -87,6 +87,7 @@ namespace faod
                 if (glm::length(dta) < 48)
                 {
                     // ATTACK
+                    cata->endure(5);
                     performing_ = true;
                     blocking_   = true;
                     perform_    = &swordAnimation2_;

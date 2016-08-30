@@ -103,6 +103,21 @@ namespace faod
         return currentForce_;
     }
 
+    int Catapult::getHealth() const
+    {
+        return hp_;
+    }
+
+    void Catapult::endure(int dmg)
+    {
+        hp_ -= dmg;
+        if (hp_ <= 0)
+        {
+            std::cout << "you ded -_-" << std::endl;
+            // TODO Game Over
+        }
+    }
+
     void Catapult::updateCurrent(sf::Time delta)
     {
         updateMovementBoundaries();

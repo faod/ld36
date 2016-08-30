@@ -51,8 +51,8 @@ namespace faod
         rect.setOutlineThickness(3.);
         rect.setFillColor(sf::Color::Transparent);
 
-        //power bar
-        float size = ((catapult_->getCurrentForce() - catapult_->getForceMin()) / (catapult_->getForceMax() - catapult_->getForceMin())) * 100.;
+        //health bar
+        float size = catapult_->getHealth();
         sf::RectangleShape power(sf::Vector2f(size, 20.));
         power.setFillColor(sf::Color::Yellow);
 

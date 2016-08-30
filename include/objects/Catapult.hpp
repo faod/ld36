@@ -26,6 +26,8 @@ namespace faod
             float getForceMin() const;
             float getForceMax() const;
             float getCurrentForce() const;
+            int   getHealth() const;
+            void  endure(int dmg);
 
             void collideWith(CollidableObject &other);
             virtual Collision::Type getCollisionType() const;
@@ -44,8 +46,9 @@ namespace faod
         private:
             ResourceHolder<sf::Font, std::string> *fonts_;
             //Game logic
-            unsigned int            hp_;
+            int                     hp_;
             float                   forcemax_;
+
             //rad, counterclockwise
             float                   maxsteeringangle_;
             float                   maxvelocity_;
